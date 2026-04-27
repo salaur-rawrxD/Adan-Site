@@ -16,13 +16,14 @@ import {
   MousePointer2,
   Network,
   PanelTop,
+  PlugZap,
   Sparkles,
   Workflow,
   X,
 } from "lucide-react";
 import clsx from "clsx";
 
-const emailHref = "mailto:hello@yourdomain.com";
+const emailHref = "mailto:aispuro.adan.r@gmail.com";
 
 const navLinks = [
   { label: "Problems", href: "#problems" },
@@ -35,13 +36,14 @@ const proofPoints = [
   "Product strategy + systems execution",
   "Fortune 500 product experience",
   "Trusted network of engineers and designers",
+  "SaaS consolidation + owned systems",
   "Built for speed, clarity, and ROI",
 ];
 
 const problems = [
   {
     title: "Customers drop off",
-    body: "Booking, ordering, intake, or service flows create friction that quietly kills revenue.",
+    body: "Ordering, intake, service, or customer flows create friction that quietly kills revenue.",
     icon: MousePointer2,
   },
   {
@@ -59,6 +61,11 @@ const problems = [
     body: "A weak digital experience can make a strong operation look average.",
     icon: PanelTop,
   },
+  {
+    title: "Over-reliance on expensive SaaS",
+    body: "Multiple subscription tools can become costly, disconnected, and poorly matched to how the business actually runs.",
+    icon: PlugZap,
+  },
 ];
 
 const services = [
@@ -70,13 +77,13 @@ const services = [
   },
   {
     title: "Workflow Optimization Sprint",
-    body: "Map how the business actually runs, find bottlenecks, and design better internal systems.",
+    body: "Map how the business actually runs, find bottlenecks, reduce tool sprawl, and design better internal systems.",
     stat: "02",
     icon: Gauge,
   },
   {
     title: "Digital Product Strategy",
-    body: "Define the right portal, dashboard, booking flow, internal tool, or customer experience before spending heavily on development.",
+    body: "Define the right portal, dashboard, ordering flow, internal tool, or customer experience before spending heavily on development.",
     stat: "03",
     icon: Compass,
   },
@@ -93,6 +100,11 @@ const outcomes = [
   "Reduce operational waste",
   "Improve customer conversion",
   "Modernize outdated workflows",
+  "Reduce SaaS spend and tool sprawl",
+  "Consolidate fragmented systems",
+  "Increase control over core workflows",
+  "Improve long-term operational efficiency",
+  "Replace unreliable tools with stable systems",
   "Replace manual workarounds",
   "Give owners better visibility",
   "Improve customer trust",
@@ -104,7 +116,7 @@ const experience = [
   "Veteran operator mindset",
   "Experience leading complex product initiatives",
   "Strong network of designers, engineers, and specialists",
-  "Focused on revenue, workflow, and customer experience",
+  "Focused on revenue, workflow, SaaS consolidation, and customer experience",
 ];
 
 const metrics = [
@@ -153,6 +165,7 @@ export default function Home() {
       <ProblemsSection />
       <ServicesSection />
       <ExecutionSection />
+      <MidPageCTA />
       <HowItWorks />
       <OutcomesSection />
       <CredibilitySection />
@@ -196,7 +209,7 @@ function NavBar() {
               {link.label}
             </a>
           ))}
-          <AnimatedButton href={emailHref} label="Let's Talk" compact />
+          <AnimatedButton href={emailHref} label="Let’s Talk" compact />
         </div>
 
         <button
@@ -230,7 +243,7 @@ function NavBar() {
             href={emailHref}
             className="mt-2 flex items-center justify-center rounded-md bg-[#0A0D14] px-4 py-3 text-sm font-semibold text-white"
           >
-            Let&apos;s Talk
+            Let&rsquo;s Talk
           </a>
         </motion.div>
       ) : null}
@@ -250,7 +263,7 @@ function HeroSection() {
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="grid gap-3">
-          <FloatingRow label="Booking flow" value="Drop-off detected" />
+          <FloatingRow label="Customer flow" value="Drop-off detected" />
           <FloatingRow label="Manual intake" value="Workflow drag" />
           <FloatingRow label="Revenue path" value="Priority fix" highlight />
         </div>
@@ -288,7 +301,7 @@ function HeroSection() {
             <Sparkles size={16} className="text-[#D6A84F]" />
             <span className="md:hidden">Strategy. Systems. Results.</span>
             <span className="hidden md:inline">
-              Product strategist and systems builder for operator-led businesses
+              Product strategist and systems builder for regional and multi-location businesses
             </span>
           </div>
           <h1 className="max-w-5xl text-[2.65rem] font-semibold leading-[0.98] tracking-tight text-white md:text-7xl md:leading-[0.94] lg:text-8xl">
@@ -303,14 +316,14 @@ function HeroSection() {
           </div>
           <p className="mt-6 max-w-2xl text-base leading-7 text-[#E2E8F0] md:mt-8 md:text-xl md:leading-8">
             <span className="md:hidden">
-              I identify revenue leaks, design better workflows, and help build the digital systems
-              that fix them.
+              I identify revenue leaks, simplify messy tools, and help build digital systems that
+              improve ROI.
             </span>
             <span className="hidden md:inline">
-            I help small and mid-sized businesses increase revenue, streamline operations, and
-            build better digital systems. I don&apos;t just advise&mdash;I identify what&apos;s broken,
-            design the solution, and help execute quickly with a trusted network of engineers and
-            designers.
+              I help growing businesses and operator-led teams increase revenue, streamline
+              operations, reduce tool sprawl, and build better digital systems. I don&apos;t just
+              advise&mdash;I identify what&apos;s broken, design the solution, and help execute
+              quickly with a trusted network of engineers and designers.
             </span>
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-10 md:gap-4">
@@ -464,14 +477,58 @@ function ProblemsSection() {
     <section id="problems" className="px-5 py-24 md:px-8 md:py-32">
       <SectionHeading
         kicker="Revenue leaks"
-        title="Where businesses lose money"
-        body="Small points of friction compound into lost revenue, slower teams, weaker customer trust, and owners making decisions without the right visibility."
+        title="Where businesses lose money (beyond the obvious)"
+        body="Small points of friction compound into lost revenue, slower teams, weak customer trust, subscription waste, and owners making decisions without the right visibility."
       />
-      <div className="mx-auto mt-12 grid max-w-7xl gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mx-auto mt-12 grid max-w-7xl gap-4 md:grid-cols-2 xl:grid-cols-5">
         {problems.map((problem, index) => (
           <ProblemCard key={problem.title} {...problem} index={index} />
         ))}
       </div>
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.55, delay: 0.12 }}
+        className="mx-auto mt-5 max-w-7xl rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)]"
+      >
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            {
+              title: "This creates",
+              items: ["Hidden monthly costs", "Operational friction", "Lack of control over core systems"],
+            },
+            {
+              title: "Better systems can",
+              items: [
+                "Reduce unnecessary SaaS spend",
+                "Consolidate workflows",
+                "Create more reliable, scalable solutions",
+              ],
+            },
+            {
+              title: "The goal",
+              items: [
+                "Keep the tools that work",
+                "Simplify the ones that do not",
+                "Own the workflows that matter most",
+              ],
+            },
+          ].map((group) => (
+            <div key={group.title}>
+              <h3 className="text-lg font-semibold text-[#0A0D14]">{group.title}</h3>
+              <div className="mt-4 grid gap-3">
+                {group.items.map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-sm font-semibold text-[#475569]">
+                    <CheckCircle2 className="mt-0.5 shrink-0 text-[#D6A84F]" size={17} />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -503,7 +560,7 @@ function ServicesSection() {
         dark
         kicker="Strategy to execution"
         title="Strategy is only useful when it gets built."
-        body="Focused engagements designed to diagnose the right problem, shape the right system, and help move execution forward with speed, clarity, and ROI."
+        body="Focused engagements designed to diagnose the right problem, shape the right system, reduce unnecessary tool dependency, and help move execution forward with speed, clarity, and ROI."
       />
       <div className="mx-auto mt-12 grid max-w-7xl gap-5 lg:grid-cols-2">
         {services.map((service, index) => (
@@ -545,6 +602,7 @@ function ExecutionSection() {
   const steps = [
     "Diagnose the revenue and workflow drag",
     "Design the system or product path",
+    "Reduce tool sprawl where it hurts ROI",
     "Coordinate fast build support when needed",
   ];
 
@@ -584,6 +642,12 @@ function ExecutionSection() {
               and what systems need to change. Then I help design and execute those solutions.
             </p>
             <p>
+              In many cases, improving ROI is not about adding more tools, but reducing dependency
+              on expensive or unreliable SaaS platforms. I help identify where tools are creating
+              friction and where custom, owned, or simplified systems can deliver better long-term
+              value.
+            </p>
+            <p>
               When needed, I collaborate with a trusted network of engineers, designers, and
               specialists to move fast without unnecessary overhead.
             </p>
@@ -607,6 +671,34 @@ function ExecutionSection() {
           </div>
         </motion.div>
       </div>
+    </section>
+  );
+}
+
+function MidPageCTA() {
+  return (
+    <section className="bg-[#0A0D14] px-5 pb-20 md:px-8 md:pb-28">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.55 }}
+        className="mx-auto flex max-w-7xl flex-col gap-5 rounded-lg border border-white/10 bg-white/[0.07] p-6 text-white shadow-[0_34px_110px_rgba(0,0,0,0.2)] backdrop-blur md:flex-row md:items-center md:justify-between md:p-8"
+      >
+        <div>
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">
+            Ready to simplify the system?
+          </p>
+          <h2 className="mt-3 max-w-3xl text-2xl font-semibold tracking-tight md:text-4xl">
+            The goal is not more software&mdash;it&apos;s better systems.
+          </h2>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-[#E2E8F0]">
+            Send a note and I&apos;ll help you look at where revenue, workflow, or tool spend is
+            creating drag.
+          </p>
+        </div>
+        <AnimatedButton href={emailHref} label="Let’s Talk" />
+      </motion.div>
     </section>
   );
 }
@@ -655,6 +747,10 @@ function HowItWorks() {
               engagements focused, fast-moving, and built around real business outcomes, not just
               deliverables.
             </p>
+            <p>
+              The goal is not more software&mdash;it&apos;s better systems: fewer disconnected tools,
+              stronger ownership of core workflows, and clearer long-term ROI.
+            </p>
           </div>
         </motion.div>
       </div>
@@ -702,7 +798,7 @@ function OutcomesSection() {
       <SectionHeading
         kicker="Outcomes"
         title="Built around measurable business impact."
-        body="Every engagement connects back to the business: revenue improvement, operational speed, customer conversion, stronger trust, and clearer owner visibility."
+        body="Every engagement connects back to the business: revenue improvement, operational speed, customer conversion, lower tool friction, stronger trust, and clearer owner visibility."
       />
       <div className="mx-auto mt-12 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {outcomes.map((outcome, index) => (
@@ -752,7 +848,8 @@ function CredibilitySection() {
             people can actually use.
           </p>
           <p className="mt-5 max-w-3xl text-lg font-semibold leading-8 text-[#0A0D14]">
-            The goal is simple: move fast, solve the right problem, and create meaningful ROI.
+            The goal is simple: move fast, solve the right problem, reduce unnecessary complexity,
+            and create meaningful ROI.
           </p>
         </motion.div>
 
@@ -796,7 +893,7 @@ function CTASection() {
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#E2E8F0]">
             Let&apos;s look at where revenue, time, or customer trust is leaking&mdash;and what a
-            better system could look like.
+            better, simpler system could look like.
           </p>
           <div className="mt-9 flex justify-center">
             <AnimatedButton href={emailHref} label="Start a Conversation" />
@@ -820,9 +917,9 @@ function Footer() {
             </p>
           </div>
         </div>
-        <p>Product strategy, systems execution, and operator-focused business improvement.</p>
+        <p>Product strategy, systems execution, and operator-focused ROI improvement.</p>
         <a href={emailHref} className="font-semibold text-[#0A0D14] hover:text-[#D6A84F]">
-          hello@yourdomain.com
+          aispuro.adan.r@gmail.com
         </a>
       </div>
     </footer>

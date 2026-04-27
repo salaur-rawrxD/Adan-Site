@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Adan Aispuro | Product Strategy and Systems Execution",
   description:
-    "Product strategy and systems execution for small and mid-sized businesses that need revenue improvement, workflow optimization, and digital systems that get built.",
+    "Product strategy and systems execution for growing, regional, and multi-location businesses that need revenue improvement, workflow optimization, SaaS consolidation, and digital systems that get built.",
 };
 
 export default function RootLayout({
