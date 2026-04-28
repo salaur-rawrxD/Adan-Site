@@ -507,6 +507,10 @@ export function SnapshotTool() {
                 If friction appears in any of these areas, there is likely revenue, time, or
                 customer trust being lost every day.
               </p>
+              <p className="mt-3 text-base leading-7 text-[#E2E8F0]">
+                Once I see your results, I&apos;ll usually have an initial read within 48 hours and
+                can let you know if a focused audit would be valuable.
+              </p>
             </div>
             <div className="mt-6">
               <p className="mb-3 text-sm font-semibold text-[#D6A84F]">Email me your results and I&rsquo;ll take a look.</p>

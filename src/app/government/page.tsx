@@ -131,6 +131,11 @@ export default function GovernmentPage() {
               body="The strongest opportunities are those where operational experience, product strategy, and systems execution can support teams already positioned to serve public-sector needs."
               icon={Network}
             />
+            <Card
+              title="Representative systems improvement"
+              body="In a prior operational environment, fragmented reporting was consolidated into a clearer workflow, reducing repeated manual effort and giving leaders faster visibility into what needed attention."
+              icon={CheckCircle2}
+            />
           </div>
         </div>
       </section>

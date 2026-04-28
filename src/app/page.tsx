@@ -141,7 +141,7 @@ export default function Home() {
             body="The goal is not more software. It is better systems: fewer disconnected tools, stronger control over core workflows, and clearer business visibility."
           />
           <div className="grid gap-4 sm:grid-cols-3 lg:pt-12">
-            <MetricCard value="10x" label="Revenue and workflow lens" />
+            <MetricCard value="10+" label="Years revenue & systems optimization" />
             <MetricCard value="4" label="Core engagement tracks" />
             <MetricCard value="1:1" label="Specialist network model" />
           </div>
