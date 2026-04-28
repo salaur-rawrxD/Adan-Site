@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import clsx from "clsx";
 
-const emailHref = "mailto:aispuro.adan.r@gmail.com";
+const emailHref = "mailto:adan@withadan.com";
 
 const navLinks = [
   { label: "Problems", href: "#problems" },
@@ -161,6 +161,7 @@ export default function Home() {
       />
       <NavBar />
       <HeroSection />
+      <RevenueFrictionSnapshot />
       <CredibilityStrip />
       <ProblemsSection />
       <ServicesSection />
@@ -253,23 +254,12 @@ function NavBar() {
 
 function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#0A0D14] px-5 pb-14 pt-24 text-white md:min-h-[92vh] md:px-8 md:pb-20 md:pt-40">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(59,130,246,0.26),transparent_28%),radial-gradient(circle_at_82%_22%,rgba(214,168,79,0.26),transparent_28%),linear-gradient(135deg,#0A0D14_0%,#111827_48%,#05070B_100%)]" />
+    <section className="relative isolate overflow-hidden bg-[#0A0D14] px-5 pb-16 pt-28 text-white md:min-h-[88vh] md:px-8 md:pb-24 md:pt-40">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(214,168,79,0.2),transparent_28%),radial-gradient(circle_at_78%_24%,rgba(100,116,139,0.22),transparent_32%),linear-gradient(135deg,#0A0D14_0%,#111827_48%,#05070B_100%)]" />
       <div className="noise-overlay" />
-      <motion.div
-        aria-hidden
-        className="absolute right-8 top-28 hidden w-[30rem] rotate-[-8deg] rounded-xl border border-white/10 bg-white/[0.06] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur md:block"
-        animate={{ y: [0, -16, 0], rotate: [-8, -5, -8] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="grid gap-3">
-          <FloatingRow label="Customer flow" value="Drop-off detected" />
-          <FloatingRow label="Manual intake" value="Workflow drag" />
-          <FloatingRow label="Revenue path" value="Priority fix" highlight />
-        </div>
-      </motion.div>
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D6A84F]/50 to-transparent" />
 
-      <div className="relative z-10 mx-auto grid max-w-7xl items-end gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -281,100 +271,45 @@ function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="mb-8 hidden items-center gap-5 md:flex"
+            className="mb-8 flex items-center gap-4 md:gap-5"
           >
-            <LogoMark className="h-16 w-16 md:h-20 md:w-20" onDark />
-            <div className="h-14 w-px bg-[#D6A84F]" />
-            <div>
-              <p className="text-2xl font-semibold uppercase leading-none tracking-[0.42em] text-white md:text-4xl">
-                Adan
-              </p>
-              <p className="mt-3 text-2xl font-semibold uppercase leading-none tracking-[0.42em] text-white md:text-4xl">
-                Aispuro
-              </p>
-              <p className="mt-4 text-xs font-bold uppercase tracking-[0.5em] text-[#D6A84F] md:text-sm">
-                Strategy. Systems. Results.
-              </p>
-            </div>
+            <LogoMark className="h-12 w-12 md:h-14 md:w-14" onDark />
+            <span className="text-xs font-bold uppercase tracking-[0.32em] text-[#D6A84F] md:text-sm">
+              Strategy. Systems. Results.
+            </span>
           </motion.div>
-          <div className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-sm font-semibold text-[#F1F5F9] backdrop-blur md:mb-7 md:px-4">
-            <Sparkles size={16} className="text-[#D6A84F]" />
-            <span className="md:hidden">Strategy. Systems. Results.</span>
-            <span className="hidden md:inline">
-              Product strategist and systems builder for regional and multi-location businesses
-            </span>
+
+          <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-sm font-semibold text-[#F1F5F9] backdrop-blur md:px-4">
+            <Sparkles size={16} className="shrink-0 text-[#D6A84F]" />
+            <span>Revenue leaks. Broken workflows. Systems that need to work.</span>
           </div>
-          <h1 className="max-w-5xl text-[2.65rem] font-semibold leading-[0.98] tracking-tight text-white md:text-7xl md:leading-[0.94] lg:text-8xl">
-            Fix what&apos;s costing your business money&mdash;fast.
+
+          <h1 className="max-w-5xl text-[3rem] font-semibold leading-[0.95] tracking-tight text-white md:text-7xl lg:text-8xl">
+            Where is your business losing money right now?
           </h1>
-          <div className="mt-6 grid grid-cols-3 gap-2 text-center text-xs font-semibold text-white md:hidden">
-            {["Increase revenue", "Streamline ops", "Build quickly"].map((item) => (
-              <div key={item} className="rounded-md border border-white/12 bg-white/[0.07] px-2 py-2">
-                {item}
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-[#E2E8F0] md:mt-8 md:text-xl md:leading-8">
-            <span className="md:hidden">
-              I identify revenue leaks, simplify messy tools, and help build digital systems that
-              improve ROI.
-            </span>
-            <span className="hidden md:inline">
-              I help growing businesses and operator-led teams increase revenue, streamline
-              operations, reduce tool sprawl, and build better digital systems. I don&apos;t just
-              advise&mdash;I identify what&apos;s broken, design the solution, and help execute
-              quickly with a trusted network of engineers and designers.
-            </span>
+
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-[#E2E8F0] md:mt-8 md:text-2xl md:leading-9">
+            I identify revenue leaks, fix broken workflows, and help build systems that actually
+            work.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row md:mt-10 md:gap-4">
-            <AnimatedButton href={emailHref} label="Start a Conversation" />
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row md:mt-10 md:gap-4">
+            <AnimatedButton href="#snapshot" label="Run the Snapshot" />
             <a
-              href="#approach"
+              href={emailHref}
               className="group inline-flex h-14 items-center justify-center gap-2 rounded-md border border-white/15 px-6 text-base font-semibold text-white transition hover:border-[#D6A84F]/70 hover:bg-white/10"
             >
-              See How I Work
+              Let&rsquo;s Talk
               <ChevronRight size={18} className="transition group-hover:translate-x-1" />
             </a>
           </div>
-        </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 36 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="relative"
-        >
-          <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.32)] backdrop-blur-xl">
-            <div className="rounded-lg bg-[#F8FAFC] p-4 text-[#0F172A]">
-              <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#475569]">
-                    Systems snapshot
-                  </p>
-                  <p className="mt-1 text-lg font-semibold">Revenue friction map</p>
-                </div>
-                <BarChart3 className="text-[#D6A84F]" size={26} />
+          <div className="mt-10 grid max-w-3xl gap-3 text-sm font-semibold text-[#CBD5E1] sm:grid-cols-3 md:mt-12">
+            {["Find revenue leaks", "Fix workflow drag", "Build what matters"].map((item) => (
+              <div key={item} className="rounded-md border border-white/10 bg-white/[0.06] px-4 py-3">
+                {item}
               </div>
-              <div className="mt-5 grid gap-3">
-                {["Customer flow", "Team workflow", "Data visibility"].map((label, index) => (
-                  <div key={label} className="rounded-md border border-[#E2E8F0] bg-white p-4">
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-sm font-semibold">{label}</span>
-                      <span className="text-xs font-semibold text-[#475569]">0{index + 1}</span>
-                    </div>
-                    <div className="mt-4 h-2 rounded-full bg-[#E2E8F0]">
-                      <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-[#D6A84F] to-[#64748B]"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${82 - index * 14}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.12 }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </motion.div>
       </div>
@@ -382,19 +317,120 @@ function HeroSection() {
   );
 }
 
-function FloatingRow({ label, value, highlight = false }: { label: string; value: string; highlight?: boolean }) {
+function RevenueFrictionSnapshot() {
+  const snapshotAreas = [
+    {
+      label: "Customer Flow",
+      value: 82,
+      description: "Where customers drop off before completing key actions.",
+    },
+    {
+      label: "Team Workflow",
+      value: 68,
+      description: "Where internal inefficiencies slow execution.",
+    },
+    {
+      label: "Data Visibility",
+      value: 54,
+      description: "Where lack of insight leads to poor decisions.",
+    },
+  ];
+
   return (
-    <div
-      className={clsx(
-        "flex items-center justify-between rounded-md border px-4 py-3 text-sm",
-        highlight
-          ? "border-[#D6A84F]/40 bg-[#D6A84F]/15 text-white"
-          : "border-white/10 bg-white/[0.06] text-[#E2E8F0]",
-      )}
-    >
-      <span>{label}</span>
-      <span className="font-semibold">{value}</span>
-    </div>
+    <section id="snapshot" className="relative overflow-hidden bg-[#0A0D14] px-5 py-20 text-white md:px-8 md:py-28">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(214,168,79,0.18),transparent_28%),radial-gradient(circle_at_82%_40%,rgba(100,116,139,0.18),transparent_32%)]" />
+      <div className="noise-overlay" />
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">
+            Diagnostic framework
+          </p>
+          <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">
+            Revenue Friction Snapshot
+          </h2>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-[#E2E8F0]">
+            A quick look at where businesses typically lose revenue.
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#CBD5E1]">
+            Most revenue loss doesn&apos;t come from obvious problems&mdash;it comes from friction
+            in systems, workflows, and visibility.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.65, delay: 0.08 }}
+          whileHover={{ y: -4 }}
+          className="rounded-xl border border-white/10 bg-white/[0.06] p-4 shadow-[0_34px_110px_rgba(0,0,0,0.24)] backdrop-blur-xl"
+        >
+          <div className="rounded-lg bg-[#F8FAFC] p-5 text-[#0F172A]">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#475569]">
+                  Revenue Friction Map
+                </p>
+                <p className="mt-1 text-lg font-semibold">Three places to inspect first</p>
+              </div>
+              <BarChart3 className="text-[#D6A84F]" size={26} />
+            </div>
+
+            <div className="mt-5 grid gap-4">
+              {snapshotAreas.map((area, index) => (
+                <motion.div
+                  key={area.label}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: index * 0.1 }}
+                  className="rounded-md border border-[#E2E8F0] bg-white p-4"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="text-sm font-semibold">{area.label}</span>
+                    <span className="font-mono text-xs font-semibold text-[#475569]">
+                      0{index + 1}
+                    </span>
+                  </div>
+                  <div className="mt-4 h-2 rounded-full bg-[#E2E8F0]">
+                    <motion.div
+                      className="h-full rounded-full bg-gradient-to-r from-[#D6A84F] to-[#64748B]"
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${area.value}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.9, delay: index * 0.12 }}
+                    />
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-[#475569]">{area.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.55, delay: 0.12 }}
+        className="relative z-10 mx-auto mt-10 flex max-w-7xl flex-col gap-5 rounded-lg border border-white/10 bg-white/[0.06] p-6 backdrop-blur md:flex-row md:items-center md:justify-between md:p-8"
+      >
+        <div>
+          <h3 className="text-2xl font-semibold tracking-tight">Want a deeper breakdown?</h3>
+          <p className="mt-2 max-w-2xl text-base leading-7 text-[#E2E8F0]">
+            Email me your results and I&apos;ll take a look.
+          </p>
+        </div>
+        <AnimatedButton href={emailHref} label="Email Me Your Results" />
+      </motion.div>
+    </section>
   );
 }
 
@@ -476,7 +512,7 @@ function ProblemsSection() {
   return (
     <section id="problems" className="px-5 py-24 md:px-8 md:py-32">
       <SectionHeading
-        kicker="Revenue leaks"
+        kicker="Revenue friction snapshot"
         title="Where businesses lose money (beyond the obvious)"
         body="Small points of friction compound into lost revenue, slower teams, weak customer trust, subscription waste, and owners making decisions without the right visibility."
       />
