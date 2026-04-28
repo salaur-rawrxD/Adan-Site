@@ -18,6 +18,7 @@ const emailHref = "mailto:adan@withadan.com";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Government", href: "/government" },
+  { label: "Tacoma", href: "/tacoma" },
   { label: "Snapshot", href: "/snapshot" },
 ];
 
@@ -115,10 +116,21 @@ export function Footer() {
             </p>
           </div>
         </div>
-        <p className="max-w-xl">Product strategy, systems execution, and operator-focused ROI improvement.</p>
-        <a href={emailHref} className="font-semibold text-[#0A0D14] transition hover:text-[#D6A84F]">
-          adan@withadan.com
-        </a>
+        <p className="max-w-xl">
+          Product strategy, systems execution, and operator-focused ROI improvement for{" "}
+          <Link href="/tacoma" className="font-semibold text-[#0A0D14] transition hover:text-[#D6A84F]">
+            Tacoma and Pierce County businesses
+          </Link>
+          .
+        </p>
+        <div className="flex flex-col gap-2 font-semibold text-[#0A0D14] md:items-end">
+          <Link href="/snapshot" className="transition hover:text-[#D6A84F]">
+            Run the Snapshot
+          </Link>
+          <a href={emailHref} className="transition hover:text-[#D6A84F]">
+            adan@withadan.com
+          </a>
+        </div>
       </div>
     </footer>
   );
@@ -131,6 +143,7 @@ export function Hero({
   primary,
   secondary,
   signals,
+  localSignal,
   restrained = false,
 }: {
   eyebrow: string;
@@ -139,6 +152,7 @@ export function Hero({
   primary: { label: string; href: string };
   secondary?: { label: string; href: string };
   signals?: string[];
+  localSignal?: { text: string; href: string };
   restrained?: boolean;
 }) {
   return (
@@ -175,6 +189,14 @@ export function Hero({
               </CTAButton>
             ) : null}
           </div>
+          {localSignal ? (
+            <Link
+              href={localSignal.href}
+              className="mt-5 inline-flex max-w-2xl rounded-md border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold leading-6 text-[#E2E8F0] transition hover:border-[#D6A84F]/60 hover:text-white"
+            >
+              {localSignal.text}
+            </Link>
+          ) : null}
           {signals ? (
             <div className="mt-10 grid gap-3 sm:grid-cols-2 md:grid-cols-4">
               {signals.map((signal) => (

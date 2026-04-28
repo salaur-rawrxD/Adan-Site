@@ -89,6 +89,10 @@ export default function Home() {
         subtitle="I identify revenue leaks, fix broken workflows, and help build systems that actually work."
         primary={{ label: "Run the Snapshot", href: "/snapshot" }}
         secondary={{ label: "Let’s Talk", href: "mailto:adan@withadan.com" }}
+        localSignal={{
+          text: "Based in Tacoma, helping businesses across Pierce County simplify operations and reduce inefficiency.",
+          href: "/tacoma",
+        }}
         signals={["Revenue", "Workflows", "Systems", "ROI"]}
       />
 
