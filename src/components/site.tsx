@@ -142,6 +142,10 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
             </p>
           </div>
           <div className="mt-6">
+            <p className="mb-4 text-sm italic leading-6 text-[#94A3B8]">
+              Describe what&rsquo;s going on. I&rsquo;ll review it and respond within 1 business day
+              with an honest take.
+            </p>
             <ContactForm
               variant="dark"
               submitLabel="Send Inquiry"
@@ -192,6 +196,7 @@ export function ContactForm({
   source = "Website contact form",
   context,
   defaultMessage = "",
+  expectationText,
 }: {
   variant?: "light" | "dark";
   submitLabel?: string;
@@ -199,6 +204,7 @@ export function ContactForm({
   source?: string;
   context?: string;
   defaultMessage?: string;
+  expectationText?: string;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -394,6 +400,11 @@ export function ContactForm({
           </>
         )}
       </motion.button>
+      {expectationText ? (
+        <p className={clsx("text-center text-[13px] leading-6", isDark ? "text-[#94A3B8]" : "text-[#64748B]")}>
+          {expectationText}
+        </p>
+      ) : null}
     </form>
   );
 }
@@ -437,6 +448,7 @@ export function Hero({
   secondary,
   signals,
   localSignal,
+  primaryNote,
   restrained = false,
 }: {
   eyebrow: string;
@@ -446,6 +458,7 @@ export function Hero({
   secondary?: { label: string; href: string };
   signals?: string[];
   localSignal?: { text: string; href: string };
+  primaryNote?: string;
   restrained?: boolean;
 }) {
   return (
@@ -482,6 +495,11 @@ export function Hero({
               </CTAButton>
             ) : null}
           </div>
+          {primaryNote ? (
+            <p className="mt-4 max-w-2xl text-center text-[13px] leading-6 text-[#94A3B8] sm:text-left">
+              {primaryNote}
+            </p>
+          ) : null}
           {localSignal ? (
             <Link
               href={localSignal.href}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, Home, Mail } from "lucide-react";
+import { ArrowLeft, ArrowRight, BarChart3, CheckCircle2, Mail } from "lucide-react";
 import clsx from "clsx";
 
 type Answer = 0 | 1 | 2;
@@ -363,14 +363,19 @@ function ResultsScreen({
           </p>
         </div>
 
-        <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-[#F8FAFC]">Want a deeper breakdown?</h2>
-            <p className="mt-2 max-w-2xl text-base leading-7 text-[#94A3B8]">
-              Send your results and I&rsquo;ll take a look at where the biggest opportunities may be.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
+        <div className="mt-6 rounded-xl border border-white/10 bg-[#0A0D14]/60 p-5">
+          <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
+            What happens with your results
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[#CBD5E1]">
+            Your answers give me a clear starting point. I&rsquo;ll review what you shared and reach
+            out within 1 business day with an initial read — what I see, what might be worth
+            looking at first, and whether there&rsquo;s a fit worth exploring.
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[#94A3B8]">
+            No automated response. No generic follow-up sequence. Just a direct reply from me.
+          </p>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
             <motion.a
               href={mailtoHref}
               whileHover={{ y: -3, scale: 1.01 }}
@@ -378,14 +383,13 @@ function ResultsScreen({
               className="inline-flex h-14 items-center justify-center gap-2 rounded-md bg-[#D6A84F] px-6 text-base font-semibold text-[#0A0D14] shadow-[0_18px_60px_rgba(214,168,79,0.28)] transition hover:bg-[#E8BE63]"
             >
               <Mail size={18} />
-              Email My Results
+              Send My Results to Adan
             </motion.a>
             <Link
-              href="/"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-md border border-white/12 px-6 text-base font-semibold text-[#F8FAFC] transition hover:border-[#D6A84F]/60 hover:bg-white/[0.06]"
+              href="/#contact"
+              className="inline-flex h-14 items-center justify-center text-sm font-semibold text-[#D6A84F] transition hover:text-[#E8BE63]"
             >
-              <Home size={18} />
-              Back to Home
+              Prefer to skip ahead? Start a direct conversation →
             </Link>
           </div>
         </div>

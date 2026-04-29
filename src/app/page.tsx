@@ -493,6 +493,7 @@ export default function Home() {
               source="Homepage contact form"
               submitLabel="Send Inquiry"
               successMessage="Thanks. I’ll review your inquiry and get back to you shortly."
+              expectationText="After you send this: I’ll review your situation and respond within 1 business day with an honest read on whether an audit, sprint, or build path makes sense. No pitch. No obligation. Just a straight answer."
             />
           </div>
         </div>

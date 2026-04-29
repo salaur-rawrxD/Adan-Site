@@ -110,6 +110,10 @@ export default function TacomaPage() {
               Start a Conversation
             </CTAButton>
           </div>
+          <p className="mt-4 max-w-2xl text-center text-[13px] leading-6 text-[#94A3B8] sm:text-left">
+            Most conversations start simple: what&rsquo;s slowing you down, where the friction is, and
+            whether there&rsquo;s a clear path forward. I&rsquo;ll tell you honestly if I&rsquo;m not the right fit.
+          </p>
         </div>
       </section>
 

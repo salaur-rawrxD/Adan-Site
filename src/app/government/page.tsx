@@ -87,6 +87,7 @@ export default function GovernmentPage() {
         title="Operational and system improvements designed for real-world constraints."
         subtitle="Improving workflows, system integration, and operational visibility in environments where constraints are real—and outcomes directly impact citizens and service members."
         primary={{ label: "Start a Conversation", href: "#government-contact" }}
+        primaryNote="Government and public sector work moves at its own pace. I don’t push timelines that don’t fit your procurement or approval cycle. Reach out when it makes sense — even if that’s just an initial conversation to understand the landscape."
         signals={["Operational", "Mission-aware", "Reliable", "Practical"]}
         restrained
       />
