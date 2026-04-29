@@ -12,7 +12,7 @@ import {
   CTAButton,
   Card,
   Footer,
-  FormspreeContactForm,
+  ContactForm,
   Hero,
   MetricCard,
   Navbar,
@@ -200,7 +200,7 @@ export default function Home() {
             </p>
           </div>
           <div className="relative z-10 rounded-lg border border-white/10 bg-white/[0.07] p-5 backdrop-blur">
-            <FormspreeContactForm
+            <ContactForm
               variant="dark"
               source="Homepage contact form"
               submitLabel="Send Inquiry"

@@ -12,7 +12,7 @@ import {
   Card,
   ExperienceList,
   Footer,
-  FormspreeContactForm,
+  ContactForm,
   Hero,
   Navbar,
   SectionHeader,
@@ -153,7 +153,7 @@ export default function GovernmentPage() {
             </p>
           </div>
           <div className="relative z-10 rounded-lg border border-white/10 bg-white/[0.07] p-5 backdrop-blur">
-            <FormspreeContactForm
+            <ContactForm
               variant="dark"
               source="Government page inquiry"
               submitLabel="Send Inquiry"

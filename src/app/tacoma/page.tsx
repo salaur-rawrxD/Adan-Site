@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { CTAButton, Footer, FormspreeContactForm, Navbar, SectionHeader } from "@/components/site";
+import { CTAButton, Footer, ContactForm, Navbar, SectionHeader } from "@/components/site";
 
 export const metadata: Metadata = {
   title: "Operations & Systems Consultant | Tacoma & Pierce County",
@@ -276,7 +276,7 @@ export default function TacomaPage() {
               />
               <div className="rounded-lg border border-white/10 bg-white/[0.07] p-5">
                 <p className="mb-4 text-lg font-semibold text-white">Start a Conversation</p>
-                <FormspreeContactForm
+                <ContactForm
                   variant="dark"
                   source="Tacoma local SEO page inquiry"
                   submitLabel="Send Inquiry"

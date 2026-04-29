@@ -16,7 +16,7 @@ import {
 import clsx from "clsx";
 
 const contactEmail = "adan@withadan.com";
-const formspreeEndpoint = "https://formspree.io/f/2990203810636365808";
+const contactEndpoint = "/api/send-email";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -142,7 +142,7 @@ function ContactModal({ open, onClose }: { open: boolean; onClose: () => void })
             </p>
           </div>
           <div className="mt-6">
-            <FormspreeContactForm
+            <ContactForm
               variant="dark"
               submitLabel="Send Inquiry"
               successMessage="Thanks. I’ll review your inquiry and get back to you shortly."
@@ -185,7 +185,7 @@ export function ContactButton({
   );
 }
 
-export function FormspreeContactForm({
+export function ContactForm({
   variant = "light",
   submitLabel = "Send",
   successMessage = "Thanks. I’ll review your inquiry and get back to you shortly.",
@@ -247,15 +247,22 @@ export function FormspreeContactForm({
     if (context) formData.set("context", context);
     formData.set("source", source);
     formData.set("_subject", `Website inquiry: ${source}`);
+    const payload = new URLSearchParams();
+    formData.forEach((value, key) => {
+      if (typeof value === "string") payload.append(key, value);
+    });
 
     try {
-      const response = await fetch(formspreeEndpoint, {
+      const response = await fetch(contactEndpoint, {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        body: payload,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
       });
 
-      if (!response.ok) throw new Error("Formspree request failed");
+      if (!response.ok) throw new Error("Contact request failed");
 
       setStatus("success");
       window.setTimeout(() => {
@@ -267,7 +274,7 @@ export function FormspreeContactForm({
   };
 
   return (
-    <form action={formspreeEndpoint} method="POST" onSubmit={handleSubmit} className="grid gap-4">
+    <form action={contactEndpoint} method="POST" onSubmit={handleSubmit} className="grid gap-4">
       <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
       <input type="hidden" name="source" value={source} />
       {context ? <input type="hidden" name="context" value={context} /> : null}
@@ -817,7 +824,7 @@ export function SnapshotTool() {
                 Send me your results and I&rsquo;ll take a look.
               </p>
               {complete ? (
-                <FormspreeContactForm
+                <ContactForm
                   variant="dark"
                   submitLabel="Send Results"
                   source="Revenue Friction Snapshot"
