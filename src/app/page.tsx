@@ -80,6 +80,63 @@ const outcomes = [
   "Increase control over core workflows",
 ];
 
+const caseStudies = [
+  {
+    tag: "Operations",
+    title: "From Manual Chaos to a System That Runs Without You",
+    summary:
+      "An 8-15 person service business was growing, but jobs lived across spreadsheets, text messages, and the owner’s memory.",
+    changed: [
+      "Mapped the full workflow from intake to job completion",
+      "Identified 3 bottlenecks causing repeated rework",
+      "Consolidated 4 tools into 1 connected operating system",
+      "Built a simple ops playbook the team could actually follow",
+    ],
+    results: [
+      "Onboarding time cut from 3 weeks to 5 days",
+      "Owner reclaimed 10+ hours per week",
+      "Team handled 40% higher job volume without adding headcount",
+    ],
+    frame: "The business finally worked without the owner in every conversation.",
+  },
+  {
+    tag: "Government",
+    title: "Cutting Approval Time Without Cutting Corners",
+    summary:
+      "A small contractor supporting an agency program had an intake and approval process taking 3-4 weeks per request.",
+    changed: [
+      "Audited the approval chain and mapped actual versus intended flow",
+      "Identified 2 review stages duplicating work",
+      "Rebuilt intake with clear ownership at each step",
+      "Created a single-source process document stakeholders agreed to use",
+    ],
+    results: [
+      "Average approval time dropped from 22 days to 8 days",
+      "Escalations dropped significantly within 60 days",
+      "Process sustained without ongoing consulting support",
+    ],
+    frame: "The same compliance standards, half the friction.",
+  },
+  {
+    tag: "Systems Build",
+    title: "Building the Operating System Before the Next Hire",
+    summary:
+      "A founder-led professional services team was preparing to hire, but roles, tools, and handoffs still lived in the founder’s head.",
+    changed: [
+      "Conducted a systems audit before hiring started",
+      "Built lightweight roles, workflows, tools, and handoff points",
+      "Integrated existing tools so data moved without manual entry",
+      "Created a 30/60/90 onboarding path for new hires",
+    ],
+    results: [
+      "First 2 hires onboarded in under 2 weeks",
+      "Founder stopped being the bottleneck for day-to-day decisions",
+      "Systems held through growth without needing a rebuild",
+    ],
+    frame: "They hired into a system, not into chaos.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#F8FAFC] text-[#0A0D14]">
@@ -164,6 +221,77 @@ export default function Home() {
             <Card key={outcome} title={outcome} icon={Gauge} compact />
           ))}
         </StaggerGrid>
+      </section>
+
+      <section className="bg-[#0A0D14] px-4 py-16 text-white sm:px-6 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">Representative engagements</p>
+            <h2 className="mt-4 max-w-4xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-6xl">
+              Work that speaks for itself.
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-[#E2E8F0] md:text-lg md:leading-8">
+              Composite examples of how workflow drag, tool sprawl, and unclear ownership get
+              turned into systems people can actually run.
+            </p>
+            <p className="mt-3 text-sm font-semibold text-[#94A3B8]">
+              Details anonymized and composited from real engagement patterns.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {caseStudies.map((study) => (
+              <article
+                key={study.title}
+                className="flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.07] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.18)] transition hover:-translate-y-1 hover:border-[#D6A84F]/40 sm:p-6"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="rounded-full border border-[#D6A84F]/30 bg-[#D6A84F]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
+                    {study.tag}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-2xl font-semibold leading-tight tracking-tight text-white">
+                  {study.title}
+                </h3>
+                <p className="mt-4 text-base leading-7 text-[#CBD5E1]">{study.summary}</p>
+
+                <div className="mt-6">
+                  <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
+                    What changed
+                  </p>
+                  <ul className="mt-4 grid gap-3">
+                    {study.changed.map((item) => (
+                      <li key={item} className="flex gap-3 text-sm leading-6 text-[#E2E8F0]">
+                        <CheckCircle2 size={17} className="mt-1 shrink-0 text-[#D6A84F]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mt-6 rounded-lg border border-white/10 bg-[#0A0D14]/70 p-4">
+                  <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">Result</p>
+                  <ul className="mt-4 grid gap-2">
+                    {study.results.map((result) => (
+                      <li key={result} className="text-sm font-semibold leading-6 text-white">
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <p className="mt-5 border-t border-white/10 pt-5 text-base font-semibold leading-7 text-white">
+                  “{study.frame}”
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[0.05] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+            <p className="text-xl font-semibold leading-7 text-white">Have a similar situation? Let&rsquo;s talk.</p>
+            <CTAButton href="#contact">Start the Conversation</CTAButton>
+          </div>
+        </div>
       </section>
 
       <section className="px-4 py-16 sm:px-6 md:py-24">
