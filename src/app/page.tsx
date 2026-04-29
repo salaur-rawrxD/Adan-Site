@@ -1,12 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import {
   BarChart3,
   CheckCircle2,
   CircleDollarSign,
   Gauge,
   PlugZap,
+  Search,
+  Wrench,
   Workflow,
+  Zap,
 } from "lucide-react";
 import {
   CTAButton,
@@ -78,6 +82,60 @@ const outcomes = [
   "Reduce SaaS spend and tool sprawl",
   "Consolidate fragmented systems",
   "Increase control over core workflows",
+];
+
+const engagementTracks = [
+  {
+    number: "01",
+    label: "Audit",
+    tagline: "Find what’s costing you",
+    timeline: "2–3 weeks",
+    icon: Search,
+    who:
+      "You know something is off but can’t pinpoint where the time, money, or momentum is going.",
+    happens: [
+      "Full workflow and systems review",
+      "Interviews with key team members",
+      "Map of where the friction, gaps, and redundancies are",
+      "Written findings with clear prioritized recommendations",
+    ],
+    takeaway:
+      "A clear picture of what to fix first and why — not a generic report, a working diagnosis.",
+  },
+  {
+    number: "02",
+    label: "Sprint",
+    tagline: "Fix the biggest drag",
+    timeline: "4–6 weeks",
+    icon: Zap,
+    who:
+      "You’ve identified the problem. Now you need someone to come in and actually fix it alongside your team.",
+    happens: [
+      "Focus on one high-impact workflow or system problem",
+      "Redesign the process with the team, not around them",
+      "Implement the changes and confirm they hold",
+      "Train whoever owns it going forward",
+    ],
+    takeaway:
+      "A working solution your team understands, owns, and can sustain without outside help.",
+  },
+  {
+    number: "03",
+    label: "Build",
+    tagline: "Build the operating system",
+    timeline: "6–12 weeks",
+    icon: Wrench,
+    who:
+      "You’re growing and need the infrastructure to support it — roles, systems, workflows, and handoffs that actually work at scale.",
+    happens: [
+      "Full operating system design for the current stage",
+      "Tool integration and workflow automation where it makes sense",
+      "Documented processes and clear ownership at every step",
+      "Onboarding paths so new hires ramp fast",
+    ],
+    takeaway:
+      "A business that runs like it has twice the team — without adding headcount.",
+  },
 ];
 
 const caseStudies = [
@@ -206,6 +264,90 @@ export default function Home() {
             <MetricCard value="10+" label="Years revenue & systems optimization" />
             <MetricCard value="4" label="Core engagement tracks" />
             <MetricCard value="1:1" label="Specialist network model" />
+          </div>
+        </div>
+      </section>
+
+      <section id="engagement-model" className="bg-[#111827] px-4 py-16 text-white sm:px-6 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">Engagement model</p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-6xl">
+              How an engagement works.
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-[#E2E8F0] md:text-lg md:leading-8">
+              Every situation is different. Most engagements fall into one of three tracks —
+              sometimes one, sometimes a sequence.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {engagementTracks.map((track) => {
+              const Icon = track.icon;
+
+              return (
+                <article
+                  key={track.label}
+                  className="relative flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.06] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.18)] transition hover:-translate-y-1 hover:border-[#D6A84F]/40 sm:p-6"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="grid h-12 w-12 place-items-center rounded-md bg-[#D6A84F] text-[#0A0D14]">
+                      <Icon size={22} />
+                    </div>
+                    <div className="text-right">
+                      <span className="rounded-full border border-white/10 bg-white/[0.07] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#CBD5E1]">
+                        {track.timeline}
+                      </span>
+                      <p className="mt-4 font-mono text-4xl font-semibold text-white/12">{track.number}</p>
+                    </div>
+                  </div>
+
+                  <h3 className="mt-6 text-3xl font-semibold leading-tight tracking-tight text-white">
+                    {track.label}
+                  </h3>
+                  <p className="mt-2 text-base font-semibold text-[#D6A84F]">{track.tagline}</p>
+                  <p className="mt-5 text-sm italic leading-6 text-[#94A3B8]">{track.who}</p>
+
+                  <div className="mt-6">
+                    <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
+                      What happens
+                    </p>
+                    <ul className="mt-4 grid gap-3">
+                      {track.happens.map((item) => (
+                        <li key={item} className="flex gap-3 text-sm leading-6 text-[#E2E8F0]">
+                          <CheckCircle2 size={17} className="mt-1 shrink-0 text-[#D6A84F]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-6 border-l-2 border-[#D6A84F] bg-[#0A0D14]/60 p-4">
+                    <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
+                      You walk away with
+                    </p>
+                    <p className="mt-3 text-base font-semibold leading-7 text-white">{track.takeaway}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 grid gap-5 rounded-xl border border-white/10 bg-white/[0.05] p-5 sm:p-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <p className="max-w-3xl text-base leading-7 text-[#E2E8F0]">
+              Not sure which track fits? The Snapshot diagnostic is a good starting point. Or reach
+              out directly — most conversations start with a straightforward question about
+              what&rsquo;s slowing you down.
+            </p>
+            <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <CTAButton href="#contact">Start the Conversation</CTAButton>
+              <Link
+                href="/snapshot"
+                className="inline-flex h-14 items-center justify-center rounded-md px-2 text-sm font-semibold text-[#D6A84F] transition hover:text-[#E8BE63]"
+              >
+                Take the Snapshot first →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
