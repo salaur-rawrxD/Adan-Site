@@ -11,6 +11,28 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.withadan.com/tacoma/",
   },
+  openGraph: {
+    type: "website",
+    title: "Operations Consultant — Tacoma & Pierce County | Adan Aispuro",
+    description:
+      "Help for Tacoma businesses with broken workflows, manual processes, and tool sprawl. Fix inefficiency. Improve revenue.",
+    url: "https://www.withadan.com/tacoma/",
+    siteName: "Adan Aispuro",
+    images: [
+      {
+        url: "https://www.withadan.com/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Operations Consultant — Tacoma & Pierce County | Adan Aispuro",
+    description:
+      "Help for Tacoma businesses with broken workflows, manual processes, and tool sprawl. Fix inefficiency. Improve revenue.",
+    images: ["https://www.withadan.com/og-image.png"],
+  },
 };
 
 const focusAreas = [

@@ -2,9 +2,35 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Adan Aispuro | Product Strategy and Systems Execution",
+  metadataBase: new URL("https://www.withadan.com"),
+  title: "Adan Aispuro | Operations & Systems Consultant — Tacoma, WA",
   description:
-    "Product strategy and systems execution for growing, regional, and multi-location businesses that need revenue improvement, workflow optimization, SaaS consolidation, and digital systems that get built.",
+    "Operations and systems consulting for growing businesses. I find revenue leaks, fix broken workflows, and build systems that actually work. Based in Tacoma, serving Pierce County.",
+  alternates: {
+    canonical: "https://www.withadan.com/",
+  },
+  openGraph: {
+    type: "website",
+    title: "Adan Aispuro | Operations & Systems Consultant",
+    description:
+      "I find revenue leaks, fix broken workflows, and build systems that actually work. Based in Tacoma, serving Pierce County.",
+    url: "https://www.withadan.com/",
+    siteName: "Adan Aispuro",
+    images: [
+      {
+        url: "https://www.withadan.com/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Adan Aispuro | Operations & Systems Consultant",
+    description:
+      "I find revenue leaks, fix broken workflows, and build systems that actually work. Based in Tacoma, serving Pierce County.",
+    images: ["https://www.withadan.com/og-image.png"],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
