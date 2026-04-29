@@ -156,7 +156,7 @@ async function handler(req, res) {
     }
 
     const to = process.env.CONTACT_EMAIL || "adan@withadan.com";
-    const fromEmail = process.env.CONTACT_FROM_EMAIL || "noreply@withadan.com";
+    const fromEmail = process.env.CONTACT_FROM_EMAIL || "adan@withadan.com";
     const fromName = "Adan Aispuro";
     const subject = `New Conversation Request from ${fields.name}`;
     const text = buildEmailText(fields);
