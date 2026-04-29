@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const sgMail = require("@sendgrid/mail");
 
+// Must match the verified SendGrid Single Sender identity.
 const senderEmail = "adan@withadan.com";
 const recipientEmail = "adan@withadan.com";
 
@@ -137,8 +138,14 @@ module.exports = async function handler(req, res) {
 
     await sgMail.send({
       to: recipientEmail,
-      from: senderEmail,
-      replyTo: fields.email,
+      from: {
+        email: senderEmail,
+        name: "Adan Aispuro",
+      },
+      replyTo: {
+        email: fields.email,
+        name: fields.name,
+      },
       subject: `New Conversation Request from ${fields.name}`,
       text: formatTextEmail(fields),
       html: formatHtmlEmail(fields),
@@ -146,7 +153,11 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({ success: true, message: "Thanks. Your message was sent." });
   } catch (error) {
-    console.error("Contact email failed", error);
+    console.error("Contact email failed", {
+      message: error?.message,
+      code: error?.code,
+      response: error?.response?.body,
+    });
     return res.status(500).json({
       success: false,
       message: "Something went wrong. Try again or email adan@withadan.com",
