@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
   BarChart3,
   CheckCircle2,
+  ChevronDown,
   CircleDollarSign,
   Gauge,
   PlugZap,
@@ -140,58 +141,66 @@ const engagementTracks = [
 
 const caseStudies = [
   {
+    category: "Revenue & Workflow Audit",
     tag: "Operations",
-    title: "From Manual Chaos to a System That Runs Without You",
-    summary:
-      "An 8-15 person service business was growing, but jobs lived across spreadsheets, text messages, and the owner’s memory.",
-    changed: [
-      "Mapped the full workflow from intake to job completion",
-      "Identified 3 bottlenecks causing repeated rework",
-      "Consolidated 4 tools into 1 connected operating system",
-      "Built a simple ops playbook the team could actually follow",
-    ],
+    timeline: "8-week engagement (Audit → Sprint)",
+    headline: "$400K in annual revenue was leaking through a workflow nobody questioned.",
+    environment: "Regional service company, 45 employees, 3 locations",
+    situation:
+      "A multi-location service business had grown from 12 to 45 people in three years. Revenue was up but margins were shrinking and nobody could explain why. The owner was working 70-hour weeks and still getting blindsided by missed jobs, billing errors, and customer complaints.",
+    found:
+      "The company was losing approximately $400K annually across three areas no one was tracking: unbilled labor from manual time entry gaps, revenue leakage from inconsistent quoting, and customer churn from slow follow-up on service issues. The root cause was not people — it was a patchwork of systems bolted together during growth.",
+    changed:
+      "Mapped every workflow from customer inquiry to final invoice. Eliminated 3 redundant tools. Consolidated job tracking, quoting, and billing into one system with clean handoffs and clear ownership at every stage. Rebuilt the quoting workflow from a 4-day manual process to a same-day response.",
     results: [
-      "Onboarding time cut from 3 weeks to 5 days",
-      "Owner reclaimed 10+ hours per week",
-      "Team handled 40% higher job volume without adding headcount",
+      "$400K in identified revenue leakage addressed in the first 90 days",
+      "Quoting turnaround: 4 days → same day",
+      "Owner’s weekly hours: 70 → 45",
+      "Team handled 30% more job volume without adding headcount",
+      "One system replaced six",
     ],
-    frame: "The business finally worked without the owner in every conversation.",
   },
   {
+    category: "Government Operations",
     tag: "Government",
-    title: "Cutting Approval Time Without Cutting Corners",
-    summary:
-      "A small contractor supporting an agency program had an intake and approval process taking 3-4 weeks per request.",
-    changed: [
-      "Audited the approval chain and mapped actual versus intended flow",
-      "Identified 2 review stages duplicating work",
-      "Rebuilt intake with clear ownership at each step",
-      "Created a single-source process document stakeholders agreed to use",
-    ],
+    timeline: "6-week engagement (Audit → Sprint)",
+    headline:
+      "22-day approval cycle. 11 stakeholders. Zero documented process. We fixed it without breaking compliance.",
+    environment: "Federal contractor supporting a mid-size defense program",
+    situation:
+      "A government contractor supporting a Department of Defense program had an intake and approval process that averaged 22 days per request. Leadership was getting weekly escalations. The team was frustrated. Deadlines were slipping.",
+    found:
+      "The 22-day cycle contained roughly 8 days of actual work and 14 days of waiting — requests sitting in inboxes, bouncing between reviewers who were not sure if they were the decision-maker, and cycling through redundant compliance checks added over time.",
+    changed:
+      "Mapped the actual process against the intended process. Consolidated two redundant review stages. Assigned clear ownership at every step with defined SLAs. Created a single-source process document that all 11 stakeholders reviewed and approved. Built in sustainment so the team could maintain it without outside support.",
     results: [
-      "Average approval time dropped from 22 days to 8 days",
-      "Escalations dropped significantly within 60 days",
-      "Process sustained without ongoing consulting support",
+      "Approval cycle: 22 days → 8 days",
+      "Weekly escalations to leadership eliminated within 60 days",
+      "Zero compliance gaps introduced — same standards, less friction",
+      "Process survived a 40% staff turnover without breaking",
+      "Contractor received positive performance review citing operational improvement",
     ],
-    frame: "The same compliance standards, half the friction.",
   },
   {
+    category: "Systems Build",
     tag: "Systems Build",
-    title: "Building the Operating System Before the Next Hire",
-    summary:
-      "A founder-led professional services team was preparing to hire, but roles, tools, and handoffs still lived in the founder’s head.",
-    changed: [
-      "Conducted a systems audit before hiring started",
-      "Built lightweight roles, workflows, tools, and handoff points",
-      "Integrated existing tools so data moved without manual entry",
-      "Created a 30/60/90 onboarding path for new hires",
-    ],
+    timeline: "10-week engagement (Audit → Build)",
+    headline: "They were about to hire 6 people into a company that couldn’t onboard one.",
+    environment: "Professional services firm, founder + 4 people, preparing to triple headcount",
+    situation:
+      "A founder had closed a large contract that required scaling from 5 people to 12 within six months. Nothing was documented. Every process lived in the founder’s head. The CRM, project management tool, invoicing system, and communication channels were all disconnected.",
+    found:
+      "The company did not have a systems problem — it had a founder-dependency problem disguised as a systems problem. The founder was the router for every decision, every client update, and every internal handoff. They had the right tools, just no connections between them and no defined workflows.",
+    changed:
+      "Built a lightweight operating system before the first new hire started. Defined roles, decision rights, and handoff points. Connected existing tools so data flowed without manual re-entry. Created a 30/60/90 onboarding path and documented the 5 core workflows the business runs on.",
     results: [
-      "First 2 hires onboarded in under 2 weeks",
-      "Founder stopped being the bottleneck for day-to-day decisions",
-      "Systems held through growth without needing a rebuild",
+      "First 3 new hires fully productive in 11 days, down from 7 weeks",
+      "Founder removed as bottleneck for day-to-day decisions",
+      "Systems held through the full scale from 5 to 14 people",
+      "Zero tools added — existing stack was connected properly",
+      "Revenue per employee increased 35% within 6 months",
     ],
-    frame: "They hired into a system, not into chaos.",
+    framing: "They hired into a system, not into chaos.",
   },
 ];
 
@@ -370,67 +379,76 @@ export default function Home() {
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">Representative engagements</p>
             <h2 className="mt-4 max-w-4xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-6xl">
-              Work that speaks for itself.
+              Representative Engagements
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-7 text-[#E2E8F0] md:text-lg md:leading-8">
-              Composite examples of how workflow drag, tool sprawl, and unclear ownership get
-              turned into systems people can actually run.
-            </p>
-            <p className="mt-3 text-sm font-semibold text-[#94A3B8]">
-              Details anonymized and composited from real engagement patterns.
+              Details composited and anonymized. The patterns are real.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5">
             {caseStudies.map((study) => (
-              <article
-                key={study.title}
-                className="flex h-full flex-col rounded-lg border border-white/10 bg-white/[0.07] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.18)] transition hover:-translate-y-1 hover:border-[#D6A84F]/40 sm:p-6"
+              <details
+                key={study.headline}
+                className="group rounded-lg border border-white/10 bg-white/[0.07] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.18)] transition hover:border-[#D6A84F]/40 sm:p-6 md:open:bg-white/[0.08]"
               >
-                <div className="flex items-center justify-between gap-4">
-                  <span className="rounded-full border border-[#D6A84F]/30 bg-[#D6A84F]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
-                    {study.tag}
-                  </span>
-                </div>
-                <h3 className="mt-5 text-2xl font-semibold leading-tight tracking-tight text-white">
-                  {study.title}
-                </h3>
-                <p className="mt-4 text-base leading-7 text-[#CBD5E1]">{study.summary}</p>
+                <summary className="flex cursor-pointer list-none flex-col gap-5 marker:hidden md:flex-row md:items-start md:justify-between [&::-webkit-details-marker]:hidden">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="rounded-full border border-[#D6A84F]/30 bg-[#D6A84F]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
+                        {study.tag}
+                      </span>
+                      <span className="text-sm font-semibold text-[#94A3B8]">{study.category}</span>
+                    </div>
+                    <h3 className="mt-5 max-w-5xl text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl">
+                      “{study.headline}”
+                    </h3>
+                    <p className="mt-4 text-sm font-semibold text-[#CBD5E1]">{study.environment}</p>
+                  </div>
+                  <div className="flex shrink-0 items-center justify-between gap-4 md:flex-col md:items-end">
+                    <span className="rounded-full border border-white/10 bg-white/[0.07] px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-[#CBD5E1]">
+                      {study.timeline}
+                    </span>
+                    <ChevronDown
+                      size={22}
+                      className="text-[#D6A84F] transition group-open:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </summary>
 
-                <div className="mt-6">
-                  <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
-                    What changed
-                  </p>
-                  <ul className="mt-4 grid gap-3">
-                    {study.changed.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm leading-6 text-[#E2E8F0]">
-                        <CheckCircle2 size={17} className="mt-1 shrink-0 text-[#D6A84F]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <div className="mt-8 grid gap-6 border-t border-white/10 pt-6 lg:grid-cols-[1fr_0.9fr]">
+                  <div className="grid gap-6">
+                    <CaseStudyBlock title="The situation" body={study.situation} />
+                    <CaseStudyBlock title="What I found" body={study.found} />
+                    <CaseStudyBlock title="What changed" body={study.changed} />
+                  </div>
 
-                <div className="mt-6 rounded-lg border border-white/10 bg-[#0A0D14]/70 p-4">
-                  <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">Result</p>
-                  <ul className="mt-4 grid gap-2">
-                    {study.results.map((result) => (
-                      <li key={result} className="text-sm font-semibold leading-6 text-white">
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="rounded-lg border border-white/10 bg-[#0A0D14]/70 p-5">
+                    <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">
+                      The result
+                    </p>
+                    <ul className="mt-5 grid gap-3">
+                      {study.results.map((result) => (
+                        <li key={result} className="flex gap-3 text-base font-semibold leading-7 text-white">
+                          <CheckCircle2 size={18} className="mt-1 shrink-0 text-[#D6A84F]" />
+                          <span>{result}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {study.framing ? (
+                      <p className="mt-6 border-t border-white/10 pt-5 text-base font-semibold leading-7 text-[#D6A84F]">
+                        Framing: “{study.framing}”
+                      </p>
+                    ) : null}
+                  </div>
                 </div>
-
-                <p className="mt-5 border-t border-white/10 pt-5 text-base font-semibold leading-7 text-white">
-                  “{study.frame}”
-                </p>
-              </article>
+              </details>
             ))}
           </div>
 
           <div className="mt-10 flex flex-col gap-4 rounded-xl border border-white/10 bg-white/[0.05] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-            <p className="text-xl font-semibold leading-7 text-white">Have a similar situation? Let&rsquo;s talk.</p>
+            <p className="text-xl font-semibold leading-7 text-white">Dealing with something similar?</p>
             <CTAButton href="#contact">Start the Conversation</CTAButton>
           </div>
         </div>
@@ -482,5 +500,14 @@ export default function Home() {
 
       <Footer />
     </main>
+  );
+}
+
+function CaseStudyBlock({ title, body }: { title: string; body: string }) {
+  return (
+    <div>
+      <p className="text-sm font-bold uppercase tracking-[0.16em] text-[#D6A84F]">{title}</p>
+      <p className="mt-3 text-base leading-7 text-[#CBD5E1]">{body}</p>
+    </div>
   );
 }
