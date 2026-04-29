@@ -2,18 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo, useState } from "react";
+import { type FormEvent, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
+  Loader2,
   LucideIcon,
   Menu,
+  Send,
   X,
 } from "lucide-react";
 import clsx from "clsx";
 
-const emailHref = "mailto:adan@withadan.com";
+const contactEmail = "adan@withadan.com";
+const formspreeEndpoint = "https://formspree.io/f/2990203810636365808";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -31,75 +34,356 @@ type ButtonVariant = "primary" | "secondary";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#E2E8F0]/80 bg-[#F8FAFC]/92 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:py-4">
-        <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Adan Aispuro home">
-          <LogoMark className="h-9 w-9" />
-          <span className="truncate text-sm font-bold uppercase tracking-[0.18em] text-[#0A0D14] sm:text-base">
-            Adan Aispuro
-          </span>
-        </Link>
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#E2E8F0]/80 bg-[#F8FAFC]/92 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:py-4">
+          <Link href="/" className="flex min-w-0 items-center gap-3" aria-label="Adan Aispuro home">
+            <LogoMark className="h-9 w-9" />
+            <span className="truncate text-sm font-bold uppercase tracking-[0.18em] text-[#0A0D14] sm:text-base">
+              Adan Aispuro
+            </span>
+          </Link>
 
-        <div className="hidden items-center gap-7 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={clsx(
-                "text-sm font-semibold transition",
-                pathname === link.href ? "text-[#0A0D14]" : "text-[#64748B] hover:text-[#0A0D14]",
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <CTAButton href={emailHref} compact>
-            Let&rsquo;s Talk
-          </CTAButton>
-        </div>
+          <div className="hidden items-center gap-7 md:flex">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={clsx(
+                  "text-sm font-semibold transition",
+                  pathname === link.href ? "text-[#0A0D14]" : "text-[#64748B] hover:text-[#0A0D14]",
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <ContactButton compact onClick={() => setContactOpen(true)}>
+              Let&rsquo;s Talk
+            </ContactButton>
+          </div>
 
-        <button
-          type="button"
-          className="grid h-11 w-11 place-items-center rounded-md border border-[#CBD5E1] bg-white text-[#0A0D14] md:hidden"
-          onClick={() => setOpen((value) => !value)}
-          aria-label="Toggle navigation"
-          aria-expanded={open}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </nav>
-
-      {open ? (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mx-4 mb-4 rounded-lg border border-[#E2E8F0] bg-white p-2 shadow-2xl md:hidden"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className={clsx(
-                "block rounded-md px-4 py-3 text-sm font-semibold",
-                pathname === link.href ? "bg-[#F8FAFC] text-[#0A0D14]" : "text-[#334155]",
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href={emailHref}
-            className="mt-2 flex h-12 items-center justify-center rounded-md bg-[#0A0D14] px-4 text-sm font-semibold text-white"
+          <button
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-md border border-[#CBD5E1] bg-white text-[#0A0D14] md:hidden"
+            onClick={() => setOpen((value) => !value)}
+            aria-label="Toggle navigation"
+            aria-expanded={open}
           >
-            Let&rsquo;s Talk
-          </a>
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </nav>
+
+        {open ? (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mx-4 mb-4 rounded-lg border border-[#E2E8F0] bg-white p-2 shadow-2xl md:hidden"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className={clsx(
+                  "block rounded-md px-4 py-3 text-sm font-semibold",
+                  pathname === link.href ? "bg-[#F8FAFC] text-[#0A0D14]" : "text-[#334155]",
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                setContactOpen(true);
+              }}
+              className="mt-2 flex h-12 w-full items-center justify-center rounded-md bg-[#0A0D14] px-4 text-sm font-semibold text-white"
+            >
+              Let&rsquo;s Talk
+            </button>
+          </motion.div>
+        ) : null}
+      </header>
+
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
+    </>
+  );
+}
+
+function ContactModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-[80] overflow-y-auto bg-[#0A0D14]/70 px-4 py-6 backdrop-blur-sm">
+      <div className="mx-auto flex min-h-full max-w-2xl items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          className="relative w-full rounded-xl border border-white/10 bg-[#0A0D14] p-5 text-white shadow-[0_40px_140px_rgba(0,0,0,0.36)] sm:p-6"
+        >
+          <button
+            type="button"
+            onClick={onClose}
+            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-md border border-white/10 bg-white/10 text-white transition hover:bg-white/15"
+            aria-label="Close contact form"
+          >
+            <X size={18} />
+          </button>
+          <div className="pr-12">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">Contact</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white">Start a conversation</h2>
+            <p className="mt-3 text-base leading-7 text-[#CBD5E1]">
+              Send a little context and I&rsquo;ll review it directly.
+            </p>
+          </div>
+          <div className="mt-6">
+            <FormspreeContactForm
+              variant="dark"
+              submitLabel="Send Inquiry"
+              successMessage="Thanks. I’ll review your inquiry and get back to you shortly."
+            />
+          </div>
         </motion.div>
+      </div>
+    </div>
+  );
+}
+
+export function ContactButton({
+  children,
+  onClick,
+  variant = "primary",
+  compact = false,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  variant?: ButtonVariant;
+  compact?: boolean;
+}) {
+  return (
+    <motion.button
+      type="button"
+      onClick={onClick}
+      whileHover={{ y: -3, scale: 1.01 }}
+      whileTap={{ scale: 0.98 }}
+      className={clsx(
+        "group inline-flex w-full items-center justify-center gap-2 rounded-md font-semibold transition sm:w-auto",
+        compact ? "h-11 px-5 text-sm" : "h-14 px-6 text-base",
+        variant === "primary"
+          ? "bg-[#D6A84F] text-[#0A0D14] shadow-[0_18px_60px_rgba(214,168,79,0.28)] hover:bg-[#E8BE63]"
+          : "border border-white/15 text-white hover:border-[#D6A84F]/70 hover:bg-white/10",
+      )}
+    >
+      {children}
+      <ArrowRight size={compact ? 16 : 18} className="transition group-hover:translate-x-1" />
+    </motion.button>
+  );
+}
+
+export function FormspreeContactForm({
+  variant = "light",
+  submitLabel = "Send",
+  successMessage = "Thanks. I’ll review your inquiry and get back to you shortly.",
+  source = "Website contact form",
+  context,
+  defaultMessage = "",
+}: {
+  variant?: "light" | "dark";
+  submitLabel?: string;
+  successMessage?: string;
+  source?: string;
+  context?: string;
+  defaultMessage?: string;
+}) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [business, setBusiness] = useState("");
+  const [need, setNeed] = useState("");
+  const [message, setMessage] = useState(defaultMessage);
+  const [additionalContext, setAdditionalContext] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const isDark = variant === "dark";
+  const fieldClass = clsx(
+    "mt-2 h-12 w-full rounded-md border px-4 text-base outline-none transition",
+    isDark
+      ? "border-white/10 bg-white text-[#0A0D14] focus:border-[#D6A84F]"
+      : "border-[#CBD5E1] bg-white text-[#0A0D14] focus:border-[#D6A84F]",
+  );
+  const areaClass = clsx(
+    "mt-2 min-h-32 w-full resize-y rounded-md border px-4 py-3 text-base outline-none transition",
+    isDark
+      ? "border-white/10 bg-white text-[#0A0D14] focus:border-[#D6A84F]"
+      : "border-[#CBD5E1] bg-white text-[#0A0D14] focus:border-[#D6A84F]",
+  );
+  const labelClass = clsx("block text-sm font-semibold", isDark ? "text-white" : "text-[#0A0D14]");
+
+  const resetFields = () => {
+    setName("");
+    setEmail("");
+    setBusiness("");
+    setNeed("");
+    setMessage("");
+    setAdditionalContext("");
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (status === "submitting" || status === "success") return;
+
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    setStatus("submitting");
+    const formData = new FormData(form);
+    if (context) formData.set("context", context);
+    formData.set("source", source);
+    formData.set("_subject", `Website inquiry: ${source}`);
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) throw new Error("Formspree request failed");
+
+      setStatus("success");
+      window.setTimeout(() => {
+        resetFields();
+      }, 2000);
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <form action={formspreeEndpoint} method="POST" onSubmit={handleSubmit} className="grid gap-4">
+      <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+      <input type="hidden" name="source" value={source} />
+      {context ? <input type="hidden" name="context" value={context} /> : null}
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className={labelClass}>
+          Name
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Your name"
+            required
+            className={fieldClass}
+          />
+        </label>
+        <label className={labelClass}>
+          Email
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Your email"
+            required
+            className={fieldClass}
+          />
+        </label>
+      </div>
+
+      <label className={labelClass}>
+        Business / Organization
+        <input
+          type="text"
+          name="business"
+          value={business}
+          onChange={(event) => setBusiness(event.target.value)}
+          placeholder="Company, agency, or organization"
+          className={fieldClass}
+        />
+      </label>
+
+      <label className={labelClass}>
+        What best describes your need?
+        <select
+          name="need"
+          value={need}
+          onChange={(event) => setNeed(event.target.value)}
+          required
+          className={fieldClass}
+        >
+          <option value="">Select one</option>
+          <option value="Revenue friction">Revenue friction</option>
+          <option value="Workflow optimization">Workflow optimization</option>
+          <option value="SaaS/tool consolidation">SaaS/tool consolidation</option>
+          <option value="Systems build or execution">Systems build or execution</option>
+          <option value="Government or partnership inquiry">Government or partnership inquiry</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </label>
+
+      <label className={labelClass}>
+        What&rsquo;s the biggest thing slowing your business?
+        <textarea
+          name="message"
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          placeholder="Tell me about your situation"
+          required
+          className={areaClass}
+        />
+      </label>
+
+      <label className={labelClass}>
+        Additional Context <span className={isDark ? "text-[#CBD5E1]" : "text-[#64748B]"}>(optional)</span>
+        <textarea
+          name="additional_context"
+          value={additionalContext}
+          onChange={(event) => setAdditionalContext(event.target.value)}
+          placeholder="Any additional details about your situation?"
+          className={clsx(areaClass, "min-h-24")}
+        />
+      </label>
+
+      {status === "success" ? (
+        <p className="rounded-md border border-emerald-400/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-200">
+          {successMessage}
+        </p>
       ) : null}
-    </header>
+      {status === "error" ? (
+        <p className="rounded-md border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-200">
+          Something went wrong. Try again or email {contactEmail}
+        </p>
+      ) : null}
+
+      <motion.button
+        type="submit"
+        disabled={status === "submitting" || status === "success"}
+        whileHover={status === "idle" || status === "error" ? { y: -3, scale: 1.01 } : undefined}
+        whileTap={status === "idle" || status === "error" ? { scale: 0.98 } : undefined}
+        className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-md bg-[#D6A84F] px-6 text-base font-semibold text-[#0A0D14] shadow-[0_18px_60px_rgba(214,168,79,0.28)] transition hover:bg-[#E8BE63] disabled:cursor-not-allowed disabled:opacity-70"
+      >
+        {status === "submitting" ? (
+          <>
+            <Loader2 size={18} className="animate-spin" />
+            Sending...
+          </>
+        ) : (
+          <>
+            <Send size={18} />
+            {submitLabel}
+          </>
+        )}
+      </motion.button>
+    </form>
   );
 }
 
@@ -127,9 +411,7 @@ export function Footer() {
           <Link href="/snapshot" className="transition hover:text-[#D6A84F]">
             Run the Snapshot
           </Link>
-          <a href={emailHref} className="transition hover:text-[#D6A84F]">
-            adan@withadan.com
-          </a>
+          <span>{contactEmail}</span>
         </div>
       </div>
     </footer>
@@ -441,7 +723,7 @@ export function SnapshotTool() {
     [answers],
   );
 
-  const emailBody = useMemo(() => {
+  const snapshotContext = useMemo(() => {
     const lines = snapshotCategories.flatMap((category) => [
       category.name,
       ...category.questions.map((question) => {
@@ -450,12 +732,8 @@ export function SnapshotTool() {
       }),
       "",
     ]);
-    return `Hi Adan,\n\nHere are my Revenue Friction Snapshot results:\n\n${lines.join("\n")}\nI'd like you to take a look.`;
+    return `Revenue Friction Snapshot results:\n\n${lines.join("\n")}`;
   }, [answers]);
-
-  const mailto = `mailto:adan@withadan.com?subject=${encodeURIComponent(
-    "Revenue Friction Snapshot Results",
-  )}&body=${encodeURIComponent(emailBody)}`;
 
   return (
     <section className="px-4 py-12 sm:px-6 md:py-20">
@@ -535,8 +813,23 @@ export function SnapshotTool() {
               </p>
             </div>
             <div className="mt-6">
-              <p className="mb-3 text-sm font-semibold text-[#D6A84F]">Email me your results and I&rsquo;ll take a look.</p>
-              <CTAButton href={mailto}>Send Results</CTAButton>
+              <p className="mb-3 text-sm font-semibold text-[#D6A84F]">
+                Send me your results and I&rsquo;ll take a look.
+              </p>
+              {complete ? (
+                <FormspreeContactForm
+                  variant="dark"
+                  submitLabel="Send Results"
+                  source="Revenue Friction Snapshot"
+                  context={snapshotContext}
+                  defaultMessage="I completed the Revenue Friction Snapshot and would like you to take a look."
+                  successMessage="Thanks. I’ll review your snapshot and get back to you shortly."
+                />
+              ) : (
+                <p className="rounded-md border border-white/10 bg-white/[0.07] px-4 py-3 text-sm font-semibold text-[#CBD5E1]">
+                  Answer all nine questions to send a complete snapshot.
+                </p>
+              )}
             </div>
           </div>
         </div>

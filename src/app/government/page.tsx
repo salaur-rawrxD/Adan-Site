@@ -9,10 +9,10 @@ import {
   Workflow,
 } from "lucide-react";
 import {
-  CTAButton,
   Card,
   ExperienceList,
   Footer,
+  FormspreeContactForm,
   Hero,
   Navbar,
   SectionHeader,
@@ -52,7 +52,7 @@ export default function GovernmentPage() {
         eyebrow="Government + public sector"
         title="Operational and system improvements designed for real-world constraints."
         subtitle="Focused on state, local, and military environments where execution, clarity, and reliability matter."
-        primary={{ label: "Start a Conversation", href: "mailto:adan@withadan.com" }}
+        primary={{ label: "Start a Conversation", href: "#government-contact" }}
         signals={["Operational", "Mission-aware", "Reliable", "Practical"]}
         restrained
       />
@@ -140,14 +140,26 @@ export default function GovernmentPage() {
         </div>
       </section>
 
-      <section className="px-4 py-16 sm:px-6 md:py-24">
-        <div className="relative mx-auto overflow-hidden rounded-xl bg-[#0A0D14] p-6 text-white shadow-[0_30px_100px_rgba(10,13,20,0.25)] sm:p-8 md:p-12">
+      <section id="government-contact" className="px-4 py-16 sm:px-6 md:py-24">
+        <div className="relative mx-auto grid max-w-7xl gap-8 overflow-hidden rounded-xl bg-[#0A0D14] p-6 text-white shadow-[0_30px_100px_rgba(10,13,20,0.25)] sm:p-8 md:p-12 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(214,168,79,0.22),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(100,116,139,0.22),transparent_34%)]" />
-          <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="relative z-10">
             <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
               For public sector, military, or partnership discussions
             </h2>
-            <CTAButton href="mailto:adan@withadan.com">Start a Conversation</CTAButton>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-[#E2E8F0]">
+              Share the environment, constraint, or partnership path you want to discuss. I&rsquo;ll
+              review the inquiry and respond with the right next step.
+            </p>
+          </div>
+          <div className="relative z-10 rounded-lg border border-white/10 bg-white/[0.07] p-5 backdrop-blur">
+            <FormspreeContactForm
+              variant="dark"
+              source="Government page inquiry"
+              submitLabel="Send Inquiry"
+              successMessage="Thanks. I’ll review your inquiry and get back to you shortly."
+              defaultMessage="I would like to discuss a public sector, military, or partnership opportunity."
+            />
           </div>
         </div>
       </section>

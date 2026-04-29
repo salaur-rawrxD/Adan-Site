@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { CTAButton, Footer, Navbar, SectionHeader } from "@/components/site";
+import { CTAButton, Footer, FormspreeContactForm, Navbar, SectionHeader } from "@/components/site";
 
 export const metadata: Metadata = {
   title: "Operations & Systems Consultant | Tacoma & Pierce County",
@@ -113,7 +113,7 @@ export default function TacomaPage() {
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <CTAButton href="/snapshot">Run the Snapshot</CTAButton>
-            <CTAButton href="mailto:adan@withadan.com" variant="secondary">
+            <CTAButton href="#tacoma-contact" variant="secondary">
               Start a Conversation
             </CTAButton>
           </div>
@@ -249,7 +249,7 @@ export default function TacomaPage() {
         </div>
       </section>
 
-      <section className="px-4 pb-16 sm:px-6 md:pb-24">
+      <section id="tacoma-contact" className="px-4 pb-16 sm:px-6 md:pb-24">
         <div className="relative mx-auto overflow-hidden rounded-xl bg-[#0A0D14] p-6 text-white shadow-[0_30px_100px_rgba(10,13,20,0.25)] sm:p-8 md:p-12">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(214,168,79,0.24),transparent_30%),radial-gradient(circle_at_82%_18%,rgba(100,116,139,0.24),transparent_34%)]" />
           <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
@@ -274,10 +274,20 @@ export default function TacomaPage() {
                 body="Take a quick diagnostic to identify workflow and revenue friction."
                 href="/snapshot"
               />
+              <div className="rounded-lg border border-white/10 bg-white/[0.07] p-5">
+                <p className="mb-4 text-lg font-semibold text-white">Start a Conversation</p>
+                <FormspreeContactForm
+                  variant="dark"
+                  source="Tacoma local SEO page inquiry"
+                  submitLabel="Send Inquiry"
+                  successMessage="Thanks. I’ll review your inquiry and get back to you shortly."
+                  defaultMessage="I would like to talk about what is slowing my operation."
+                />
+              </div>
               <CtaPanel
-                title="Start a Conversation"
-                body="Or let's talk about what's slowing your operation."
-                href="mailto:adan@withadan.com"
+                title="Commercial homepage"
+                body="See the broader business systems and revenue positioning."
+                href="/"
               />
             </div>
           </div>

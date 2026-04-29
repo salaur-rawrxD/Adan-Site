@@ -12,6 +12,7 @@ import {
   CTAButton,
   Card,
   Footer,
+  FormspreeContactForm,
   Hero,
   MetricCard,
   Navbar,
@@ -88,7 +89,7 @@ export default function Home() {
         title="Where is your business losing money right now?"
         subtitle="I identify revenue leaks, fix broken workflows, and help build systems that actually work."
         primary={{ label: "Run the Snapshot", href: "/snapshot" }}
-        secondary={{ label: "Let’s Talk", href: "mailto:adan@withadan.com" }}
+        secondary={{ label: "Let’s Talk", href: "#contact" }}
         localSignal={{
           text: "Based in Tacoma, helping businesses across Pierce County simplify operations and reduce inefficiency.",
           href: "/tacoma",
@@ -177,10 +178,34 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <CTAButton href="/snapshot">Run the Snapshot</CTAButton>
-              <CTAButton href="mailto:adan@withadan.com" variant="secondary">
+              <CTAButton href="#contact" variant="secondary">
                 Let’s Talk
               </CTAButton>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="px-4 pb-16 sm:px-6 md:pb-24">
+        <div className="relative mx-auto grid max-w-7xl gap-8 overflow-hidden rounded-xl bg-[#0A0D14] p-6 text-white shadow-[0_30px_100px_rgba(10,13,20,0.25)] sm:p-8 md:p-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_12%,rgba(214,168,79,0.22),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(100,116,139,0.22),transparent_34%)]" />
+          <div className="relative z-10">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">Contact</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+              Tell me what is slowing the business down.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-[#E2E8F0]">
+              Share the workflow, revenue, customer experience, or tool problem that feels heavier
+              than it should. I&rsquo;ll review it directly.
+            </p>
+          </div>
+          <div className="relative z-10 rounded-lg border border-white/10 bg-white/[0.07] p-5 backdrop-blur">
+            <FormspreeContactForm
+              variant="dark"
+              source="Homepage contact form"
+              submitLabel="Send Inquiry"
+              successMessage="Thanks. I’ll review your inquiry and get back to you shortly."
+            />
           </div>
         </div>
       </section>
