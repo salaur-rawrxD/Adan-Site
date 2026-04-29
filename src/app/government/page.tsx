@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import {
   Card,
-  ExperienceList,
   Footer,
   ContactForm,
   Hero,
@@ -19,13 +18,27 @@ import {
   StaggerGrid,
 } from "@/components/site";
 
-const background = [
-  "U.S. Army — Infantry & Civil Affairs",
-  "U.S. Air Force — Standardization & Evaluations, C-17 Operations",
-  "Defense Health Agency — Web & Mobile Technology",
-  "U.S. Census Bureau — Military & Veteran Liaison, Washington State",
-  "Amazon — Customer Service Technology",
-  "Seamgen — Product Strategy & Systems Execution",
+const operatingBackground = [
+  {
+    title: "Field and mission operations",
+    body: "Experience in military environments where unclear workflows, handoffs, and fragmented information can slow coordination and affect readiness.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Public service delivery",
+    body: "Experience around programs, service access, and stakeholder coordination where systems need to support reliable outcomes under real constraints.",
+    icon: Building2,
+  },
+  {
+    title: "Federal and health technology",
+    body: "Experience with web and mobile technology in environments where reliability, usability, and governance matter as much as the interface.",
+    icon: FileCheck2,
+  },
+  {
+    title: "Enterprise systems execution",
+    body: "Experience translating operational problems into product direction, workflow improvements, and systems that teams can actually use.",
+    icon: Network,
+  },
 ];
 
 const constraints = [
@@ -62,25 +75,33 @@ export default function GovernmentPage() {
           <div>
             <SectionHeader
               eyebrow="Background"
-              title="Built from inside the operating environment."
+              title="Built from operating in constrained systems."
               body="Experience operating within military, federal, and enterprise environments where systems, workflows, and data directly impact execution and outcomes."
             />
             <p className="mt-6 max-w-3xl text-base leading-7 text-[#475569]">
               Built from experience inside the systems, workflows, and constraints that public
               sector and military teams operate in. Not from the outside looking in.
             </p>
+            <p className="mt-4 max-w-3xl text-sm font-semibold leading-6 text-[#64748B]">
+              Background includes U.S. Army, U.S. Air Force, Defense Health Agency, U.S. Census
+              Bureau, Amazon, and product strategy work with technical delivery teams.
+            </p>
           </div>
-          <ExperienceList items={background} />
+          <StaggerGrid className="grid gap-4 sm:grid-cols-2">
+            {operatingBackground.map((item) => (
+              <Card key={item.title} title={item.title} body={item.body} icon={item.icon} compact />
+            ))}
+          </StaggerGrid>
         </div>
         <div className="mx-auto mt-8 grid max-w-7xl gap-4 md:grid-cols-2">
           <Card
             title="Where systems break down"
-            body="This experience provides a practical understanding of how systems break down in real environments—where legacy tools, fragmented workflows, and limited visibility create friction that slows execution. These issues do not just create inefficiency; they affect coordination, delivery, and timely access to services for citizens."
+            body="This experience provides a practical understanding of how systems break down in real environments—where legacy tools, fragmented workflows, and limited visibility create friction that slows execution. These issues do not just create inefficiency; they affect coordination, program delivery, outcomes, and timely access to services and resources for citizens."
             icon={Workflow}
           />
           <Card
             title="Where the work focuses now"
-            body="The focus now is on identifying those breakdowns and designing systems that improve clarity, reduce manual effort, and enable faster, more reliable outcomes. In military environments, the same challenges can affect operational effectiveness and readiness, where clarity and speed are critical."
+            body="The focus now is on identifying those breakdowns and designing systems that improve clarity, reduce manual effort, and enable faster, more reliable outcomes. In military environments, the same challenges can affect operational effectiveness and readiness for service members, where clarity and speed are critical."
             icon={ShieldCheck}
           />
         </div>
