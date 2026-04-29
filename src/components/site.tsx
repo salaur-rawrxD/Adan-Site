@@ -247,6 +247,9 @@ export function ContactForm({
     if (context) formData.set("context", context);
     formData.set("source", source);
     formData.set("_subject", `Website inquiry: ${source}`);
+    formData.set("slowdown", message);
+    const currentContext = [additionalContext, context].filter(Boolean).join("\n\n");
+    formData.set("context", currentContext);
     const payload = new URLSearchParams();
     formData.forEach((value, key) => {
       if (typeof value === "string") payload.append(key, value);
@@ -276,6 +279,7 @@ export function ContactForm({
   return (
     <form action={contactEndpoint} method="POST" onSubmit={handleSubmit} className="grid gap-4">
       <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+      <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" />
       <input type="hidden" name="source" value={source} />
       {context ? <input type="hidden" name="context" value={context} /> : null}
 
@@ -340,7 +344,7 @@ export function ContactForm({
       <label className={labelClass}>
         What&rsquo;s the biggest thing slowing your business?
         <textarea
-          name="message"
+          name="slowdown"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Tell me about your situation"

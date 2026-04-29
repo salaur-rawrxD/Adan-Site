@@ -1,16 +1,10 @@
-const rateLimitWindowMs = 60 * 1000;
-const submissionsByIp = new Map();
+/* eslint-disable @typescript-eslint/no-require-imports */
+const sgMail = require("@sendgrid/mail");
 
-function getIp(req) {
-  const forwardedFor = req.headers["x-forwarded-for"];
-  if (typeof forwardedFor === "string" && forwardedFor.length > 0) {
-    return forwardedFor.split(",")[0].trim();
-  }
+const senderEmail = "adan@withadan.com";
+const recipientEmail = "adan@withadan.com";
 
-  return req.socket?.remoteAddress || "unknown";
-}
-
-function parseCookiesOrBodyValue(value) {
+function getValue(value) {
   return typeof value === "string" ? value.trim() : "";
 }
 
@@ -29,7 +23,7 @@ async function readRawBody(req) {
   return Buffer.concat(chunks).toString("utf8");
 }
 
-async function parseRequestBody(req) {
+async function parseBody(req) {
   const contentType = req.headers["content-type"] || "";
   const rawBody = await readRawBody(req);
 
@@ -37,117 +31,97 @@ async function parseRequestBody(req) {
     return JSON.parse(rawBody || "{}");
   }
 
-  const params = new URLSearchParams(rawBody);
-  return Object.fromEntries(params.entries());
+  return Object.fromEntries(new URLSearchParams(rawBody).entries());
 }
 
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function buildEmailText(fields) {
-  const contextParts = [
-    fields.message ? `Situation: ${fields.message}` : "",
-    fields.additional_context ? `Additional Context: ${fields.additional_context}` : "",
-    fields.context ? `Snapshot / Page Context:\n${fields.context}` : "",
-    fields.source ? `Source: ${fields.source}` : "",
-  ].filter(Boolean);
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
 
+function formatHtmlEmail({ name, email, business, need, slowdown, context }) {
+  const rows = [
+    ["Name", name],
+    ["Email", email],
+    ["Business / Organization", business || "Not provided"],
+    ["Need", need],
+    ["Situation", slowdown || "Not provided"],
+    ["Additional Context", context || "Not provided"],
+  ];
+
+  return `
+    <div style="font-family: Inter, Arial, sans-serif; color: #0A0D14; line-height: 1.6;">
+      <h1 style="font-size: 24px; margin: 0 0 8px;">New Conversation Request</h1>
+      <p style="margin: 0 0 24px; color: #64748B;">Submitted from withadan.com</p>
+      <table style="width: 100%; border-collapse: collapse;">
+        ${rows
+          .map(
+            ([label, value]) => `
+              <tr>
+                <td style="width: 190px; padding: 12px; border: 1px solid #E2E8F0; background: #F8FAFC; font-weight: 700; vertical-align: top;">
+                  ${escapeHtml(label)}
+                </td>
+                <td style="padding: 12px; border: 1px solid #E2E8F0; white-space: pre-wrap;">
+                  ${escapeHtml(value)}
+                </td>
+              </tr>
+            `,
+          )
+          .join("")}
+      </table>
+    </div>
+  `;
+}
+
+function formatTextEmail({ name, email, business, need, slowdown, context }) {
   return [
     "New conversation request from withadan.com",
     "",
     "---",
-    `Name: ${fields.name}`,
-    `Email: ${fields.email}`,
-    `Company: ${fields.business || "Not provided"}`,
-    `Need: ${fields.need}`,
-    contextParts.join("\n\n"),
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Company: ${business || "Not provided"}`,
+    `Need: ${need}`,
+    `Situation: ${slowdown || "Not provided"}`,
+    `Context: ${context || "Not provided"}`,
     "---",
   ].join("\n");
 }
 
-async function sendWithResend({ apiKey, from, to, subject, replyTo, text }) {
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to,
-      subject,
-      reply_to: replyTo,
-      text,
-    }),
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Resend failed: ${error}`);
-  }
-}
-
-async function sendWithSendGrid({ apiKey, fromEmail, fromName, to, subject, replyTo, text }) {
-  const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      personalizations: [{ to: [{ email: to }] }],
-      from: { email: fromEmail, name: fromName },
-      reply_to: { email: replyTo },
-      subject,
-      content: [{ type: "text/plain", value: text }],
-    }),
-  });
-
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`SendGrid failed: ${error}`);
-  }
-}
-
-async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).json({ success: false, message: "Method not allowed" });
   }
 
-  const ip = getIp(req);
-  const lastSubmission = submissionsByIp.get(ip);
-  const now = Date.now();
-  if (lastSubmission && now - lastSubmission < rateLimitWindowMs) {
-    return res.status(429).json({
-      success: false,
-      message: "Please wait a minute before submitting again.",
-    });
-  }
-
   try {
-    const body = await parseRequestBody(req);
+    const body = await parseBody(req);
 
-    if (parseCookiesOrBodyValue(body._gotcha)) {
+    if (getValue(body.website)) {
       return res.status(200).json({ success: true, message: "Submitted" });
     }
 
     const fields = {
-      name: parseCookiesOrBodyValue(body.name),
-      email: parseCookiesOrBodyValue(body.email),
-      business: parseCookiesOrBodyValue(body.business),
-      need: parseCookiesOrBodyValue(body.need),
-      message: parseCookiesOrBodyValue(body.message),
-      additional_context: parseCookiesOrBodyValue(body.additional_context),
-      context: parseCookiesOrBodyValue(body.context),
-      source: parseCookiesOrBodyValue(body.source),
+      name: getValue(body.name),
+      email: getValue(body.email),
+      business: getValue(body.business),
+      need: getValue(body.need),
+      slowdown: getValue(body.slowdown || body.message),
+      context: getValue(body.context || body.additional_context),
     };
 
-    if (!fields.name || !fields.email || !fields.need || !fields.message) {
+    if (!fields.name || !fields.email || !fields.need) {
       return res.status(400).json({
         success: false,
-        message: "Name, email, need, and situation are required.",
+        message: "Name, email, and need are required.",
       });
     }
 
@@ -155,44 +129,27 @@ async function handler(req, res) {
       return res.status(400).json({ success: false, message: "Enter a valid email address." });
     }
 
-    const to = process.env.CONTACT_EMAIL || "adan@withadan.com";
-    const fromEmail = process.env.CONTACT_FROM_EMAIL || "adan@withadan.com";
-    const fromName = "Adan Aispuro";
-    const subject = `New Conversation Request from ${fields.name}`;
-    const text = buildEmailText(fields);
-
-    if (process.env.RESEND_API_KEY) {
-      await sendWithResend({
-        apiKey: process.env.RESEND_API_KEY,
-        from: `${fromName} <${fromEmail}>`,
-        to,
-        subject,
-        replyTo: fields.email,
-        text,
-      });
-    } else if (process.env.SENDGRID_API_KEY) {
-      await sendWithSendGrid({
-        apiKey: process.env.SENDGRID_API_KEY,
-        fromEmail,
-        fromName,
-        to,
-        subject,
-        replyTo: fields.email,
-        text,
-      });
-    } else {
-      throw new Error("Missing RESEND_API_KEY or SENDGRID_API_KEY");
+    if (!process.env.SENDGRID_API_KEY) {
+      return res.status(500).json({ success: false, message: "Email service is not configured" });
     }
 
-    submissionsByIp.set(ip, now);
-    return res.status(200).json({ success: true, message: "Email sent" });
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    await sgMail.send({
+      to: recipientEmail,
+      from: senderEmail,
+      replyTo: fields.email,
+      subject: `New Conversation Request from ${fields.name}`,
+      text: formatTextEmail(fields),
+      html: formatHtmlEmail(fields),
+    });
+
+    return res.status(200).json({ success: true, message: "Thanks. Your message was sent." });
   } catch (error) {
-    console.error("Contact form email failed", error);
+    console.error("Contact email failed", error);
     return res.status(500).json({
       success: false,
       message: "Something went wrong. Try again or email adan@withadan.com",
     });
   }
-}
-
-module.exports = handler;
+};
