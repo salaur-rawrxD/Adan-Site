@@ -51,7 +51,7 @@ export default function GovernmentPage() {
       <Hero
         eyebrow="Government + public sector"
         title="Operational and system improvements designed for real-world constraints."
-        subtitle="Focused on state, local, and military environments where execution, clarity, and reliability matter."
+        subtitle="Improving workflows, system integration, and operational visibility in environments where constraints are real—and outcomes directly impact citizens and service members."
         primary={{ label: "Start a Conversation", href: "#government-contact" }}
         signals={["Operational", "Mission-aware", "Reliable", "Practical"]}
         restrained
@@ -75,12 +75,12 @@ export default function GovernmentPage() {
         <div className="mx-auto mt-8 grid max-w-7xl gap-4 md:grid-cols-2">
           <Card
             title="Where systems break down"
-            body="This experience provides a practical understanding of how systems break down in real environments—where legacy tools, fragmented workflows, and limited visibility create friction that slows execution."
+            body="This experience provides a practical understanding of how systems break down in real environments—where legacy tools, fragmented workflows, and limited visibility create friction that slows execution. These issues do not just create inefficiency; they affect coordination, delivery, and timely access to services for citizens."
             icon={Workflow}
           />
           <Card
             title="Where the work focuses now"
-            body="The focus now is on identifying those breakdowns and designing systems that improve clarity, reduce manual effort, and enable faster, more reliable outcomes."
+            body="The focus now is on identifying those breakdowns and designing systems that improve clarity, reduce manual effort, and enable faster, more reliable outcomes. In military environments, the same challenges can affect operational effectiveness and readiness, where clarity and speed are critical."
             icon={ShieldCheck}
           />
         </div>
@@ -90,7 +90,7 @@ export default function GovernmentPage() {
         <SectionHeader
           eyebrow="Operational context"
           title="I understand the constraints."
-          body="Public sector and military environments need practical systems that can survive compliance, legacy infrastructure, handoffs, and real operational pressure."
+          body="Public sector and military environments need practical systems that can survive compliance, legacy infrastructure, handoffs, and real operational pressure. Work is grounded in environments where outcomes are tied to serving the public effectively and maintaining readiness across teams and operations."
           dark
         />
         <StaggerGrid className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -111,6 +111,11 @@ export default function GovernmentPage() {
             <Card key={item} title={item} icon={CheckCircle2} compact />
           ))}
         </StaggerGrid>
+        <p className="mx-auto mt-8 max-w-4xl text-base leading-7 text-[#475569]">
+          Improvements are designed to support more reliable service delivery, clearer
+          decision-making, and stronger operational readiness, ensuring both citizens and service
+          members are better supported by the systems they rely on.
+        </p>
       </section>
 
       <section className="bg-[#EEF2F7] px-4 py-16 sm:px-6 md:py-24">
