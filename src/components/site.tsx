@@ -196,6 +196,7 @@ export function ContactForm({
   source = "Website contact form",
   context,
   defaultMessage = "",
+  defaultNeed = "",
   expectationText,
 }: {
   variant?: "light" | "dark";
@@ -204,12 +205,13 @@ export function ContactForm({
   source?: string;
   context?: string;
   defaultMessage?: string;
+  defaultNeed?: string;
   expectationText?: string;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [business, setBusiness] = useState("");
-  const [need, setNeed] = useState("");
+  const [need, setNeed] = useState(defaultNeed);
   const [message, setMessage] = useState(defaultMessage);
   const [additionalContext, setAdditionalContext] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -233,7 +235,7 @@ export function ContactForm({
     setName("");
     setEmail("");
     setBusiness("");
-    setNeed("");
+    setNeed(defaultNeed);
     setMessage("");
     setAdditionalContext("");
   };
