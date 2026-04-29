@@ -217,13 +217,16 @@ function SnapshotStep({
   onBack: () => void;
   onNext: () => void;
 }) {
+  const answeredCount = category.questions.filter((question) => answers[keyFor(category.id, question)] !== undefined).length;
+  const remainingCount = category.questions.length - answeredCount;
+
   return (
     <motion.div
       key={category.id}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] shadow-[0_40px_160px_rgba(0,0,0,0.36)] backdrop-blur-xl"
+      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] shadow-[0_24px_90px_rgba(0,0,0,0.32)] md:shadow-[0_40px_160px_rgba(0,0,0,0.36)] md:backdrop-blur-xl"
     >
       <div className="border-b border-white/10 p-5 sm:p-6">
         <div className="flex items-center justify-between gap-4">
@@ -245,9 +248,9 @@ function SnapshotStep({
             return (
               <motion.div
                 key={question}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: index * 0.06 }}
+                transition={{ duration: 0.18, delay: index * 0.025 }}
                 className="rounded-xl border border-white/10 bg-[#0A0D14]/50 p-4 sm:p-5"
               >
                 <p className="text-base font-semibold leading-7 text-[#F8FAFC]">{question}</p>
@@ -267,19 +270,26 @@ function SnapshotStep({
         </div>
       </div>
 
-      <div className="sticky bottom-0 flex flex-col gap-3 border-t border-white/10 bg-[#0A0D14]/90 p-5 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+      <div className="sticky bottom-0 flex flex-col gap-3 border-t border-white/10 bg-[#0A0D14] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5 md:bg-[#0A0D14]/90 md:backdrop-blur-xl">
         <button
           type="button"
           onClick={onBack}
           disabled={step === 0}
-          className="inline-flex h-12 items-center justify-center gap-2 rounded-md border border-white/12 px-5 text-sm font-semibold text-[#E2E8F0] transition hover:border-[#D6A84F]/60 hover:bg-white/[0.06] disabled:cursor-not-allowed disabled:opacity-40"
+          className="inline-flex h-12 touch-manipulation items-center justify-center gap-2 rounded-md border border-white/12 px-5 text-sm font-semibold text-[#E2E8F0] transition hover:border-[#D6A84F]/60 hover:bg-white/[0.06] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40 sm:h-14"
         >
           <ArrowLeft size={17} />
           Back
         </button>
-        <PremiumButton onClick={onNext} disabled={!canContinue}>
-          {step === 2 ? "View Results" : "Next"}
-        </PremiumButton>
+        <div className="grid gap-2 sm:justify-items-end">
+          {!canContinue ? (
+            <p className="text-center text-xs font-semibold text-[#94A3B8] sm:text-right" aria-live="polite">
+              Answer {remainingCount} more {remainingCount === 1 ? "question" : "questions"} to continue.
+            </p>
+          ) : null}
+          <PremiumButton onClick={onNext} disabled={!canContinue}>
+            {step === 2 ? "View Results" : "Next"}
+          </PremiumButton>
+        </div>
       </div>
     </motion.div>
   );
@@ -287,20 +297,18 @@ function SnapshotStep({
 
 function AnswerButton({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
   return (
-    <motion.button
+    <button
       type="button"
       onClick={onClick}
-      whileHover={{ y: -3 }}
-      whileTap={{ scale: 0.98 }}
       className={clsx(
-        "min-h-14 rounded-lg border px-4 text-sm font-semibold transition",
+        "min-h-14 touch-manipulation rounded-lg border px-4 text-sm font-semibold transition-[transform,background-color,border-color,color,box-shadow] duration-150 hover:-translate-y-0.5 active:scale-[0.99]",
         selected
-          ? "border-[#D6A84F] bg-[#D6A84F]/14 text-[#F8FAFC] shadow-[0_0_40px_rgba(214,168,79,0.16)]"
+          ? "border-[#D6A84F] bg-[#D6A84F]/14 text-[#F8FAFC] shadow-[0_0_22px_rgba(214,168,79,0.14)]"
           : "border-white/12 bg-white/[0.04] text-[#CBD5E1] hover:border-[#D6A84F]/60 hover:bg-white/[0.07]",
       )}
     >
       {label}
-    </motion.button>
+    </button>
   );
 }
 
@@ -473,17 +481,15 @@ function PremiumButton({
   disabled?: boolean;
 }) {
   return (
-    <motion.button
+    <button
       type="button"
       onClick={onClick}
       disabled={disabled}
-      whileHover={!disabled ? { y: -3, scale: 1.01 } : undefined}
-      whileTap={!disabled ? { scale: 0.98 } : undefined}
-      className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-md bg-[#D6A84F] px-6 text-base font-semibold text-[#0A0D14] shadow-[0_18px_60px_rgba(214,168,79,0.28)] transition hover:bg-[#E8BE63] disabled:cursor-not-allowed disabled:opacity-45 sm:w-auto"
+      className="inline-flex h-14 w-full touch-manipulation items-center justify-center gap-2 rounded-md bg-[#D6A84F] px-6 text-base font-semibold text-[#0A0D14] shadow-[0_14px_42px_rgba(214,168,79,0.24)] transition duration-150 hover:-translate-y-0.5 hover:bg-[#E8BE63] active:scale-[0.985] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:translate-y-0 sm:min-w-40 sm:w-auto"
     >
       {children}
       <ArrowRight size={18} />
-    </motion.button>
+    </button>
   );
 }
 
