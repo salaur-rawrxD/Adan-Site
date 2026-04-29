@@ -55,6 +55,27 @@ const approach = [
   "Increase operational visibility",
   "Reduce manual effort and process friction",
   "Build practical solutions that work within real-world constraints",
+  "Support change management and stakeholder buy-in",
+  "Create process documentation and knowledge transfer",
+];
+
+const publicSectorConstraints = [
+  {
+    title: "Documentation first",
+    body: "Every engagement produces clear, auditable documentation that survives personnel transitions and audit cycles.",
+  },
+  {
+    title: "Stakeholder alignment built in",
+    body: "Process changes are reviewed with affected stakeholders before implementation — not after.",
+  },
+  {
+    title: "No shortcuts on compliance",
+    body: "Work is scoped within existing regulatory, procurement, and security frameworks. Not around them.",
+  },
+  {
+    title: "Sustainment by design",
+    body: "Solutions are built so your internal team can own and maintain them without ongoing outside support.",
+  },
 ];
 
 export default function GovernmentPage() {
@@ -69,6 +90,14 @@ export default function GovernmentPage() {
         signals={["Operational", "Mission-aware", "Reliable", "Practical"]}
         restrained
       />
+
+      <section className="bg-white px-4 pb-6 sm:px-6 md:pb-10">
+        <p className="mx-auto max-w-7xl text-base leading-7 text-[#475569]">
+          Government and public sector work moves differently. Procurement takes time.
+          Stakeholders multiply. Documentation is not optional. I&rsquo;ve worked in these
+          environments and build engagements around those realities — not despite them.
+        </p>
+      </section>
 
       <section className="px-4 py-16 sm:px-6 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -121,7 +150,7 @@ export default function GovernmentPage() {
         </StaggerGrid>
       </section>
 
-      <section className="px-4 py-16 sm:px-6 md:py-24">
+      <section id="government-approach" className="px-4 py-16 sm:px-6 md:py-24">
         <SectionHeader
           eyebrow="Approach"
           title="Solutions designed for the environment they must operate in."
@@ -139,17 +168,48 @@ export default function GovernmentPage() {
         </p>
       </section>
 
+      <section className="bg-[#0A0D14] px-4 py-16 text-white sm:px-6 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">
+              Public sector constraints
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-6xl">
+              Built for the constraints of public sector work.
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-7 text-[#E2E8F0] md:text-lg md:leading-8">
+              Practical systems work needs to reduce risk as much as it improves speed. The goal is
+              clarity that can be reviewed, adopted, and sustained.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {publicSectorConstraints.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-lg border border-white/10 bg-white/[0.07] p-5 shadow-[0_28px_90px_rgba(0,0,0,0.18)]"
+              >
+                <div className="border-l-2 border-[#D6A84F] pl-4">
+                  <h3 className="text-xl font-semibold tracking-tight text-white">{item.title}</h3>
+                  <p className="mt-3 text-base leading-7 text-[#CBD5E1]">{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#EEF2F7] px-4 py-16 sm:px-6 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SectionHeader
             eyebrow="Engagement pathways"
             title="Structured for practical partnership conversations."
-            body="Engagements can be structured through strategic partnerships, veteran-aligned participation models, Tribal 8(a) partner pathways, set-aside opportunities, and partner-led contracting approaches where appropriate."
+            body="For engagements that benefit from formal procurement vehicles, I work through qualified partner pathways that meet compliance and certification requirements."
           />
           <div className="grid gap-4">
             <Card
               title="Careful by design"
-              body="This page does not imply personal 8(a) ownership, guarantee awards, or suggest procurement shortcuts. It is designed for qualified, partner-led conversations where the pathway fits the work."
+              body="This page does not imply personal certification ownership, guarantee awards, or suggest procurement shortcuts. It is designed for qualified, partner-led conversations where the pathway fits the work."
               icon={Building2}
             />
             <Card
@@ -177,6 +237,11 @@ export default function GovernmentPage() {
               Share the environment, constraint, or partnership path you want to discuss. I&rsquo;ll
               review the inquiry and respond with the right next step.
             </p>
+            <p className="mt-5 max-w-2xl text-sm leading-6 text-[#94A3B8]">
+              All engagements are scoped to respect procurement timelines, compliance documentation
+              requirements, stakeholder review cycles, and sustainment planning. Work is structured
+              to complement your existing processes — not shortcut them.
+            </p>
           </div>
           <div className="relative z-10 rounded-lg border border-white/10 bg-white/[0.07] p-5 backdrop-blur">
             <ContactForm
@@ -187,6 +252,11 @@ export default function GovernmentPage() {
               defaultMessage="I would like to discuss a public sector, military, or partnership opportunity."
             />
           </div>
+          <p className="relative z-10 text-xs leading-6 text-[#94A3B8] lg:col-span-2">
+            Engagements are scoped individually. Work does not include legal, regulatory, or
+            acquisition advisory services. For compliance-sensitive programs, all work is
+            coordinated with your designated compliance and procurement leads.
+          </p>
         </div>
       </section>
 
