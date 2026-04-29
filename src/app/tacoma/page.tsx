@@ -32,7 +32,7 @@ const approach = [
   },
   {
     title: "Reduce unnecessary SaaS and tool sprawl",
-    body: "Eliminate tools that do not serve the business. Consolidate where possible.",
+    body: "Cut tools that do not earn their place. Consolidate what remains.",
   },
   {
     title: "Support execution",
@@ -99,16 +99,9 @@ export default function TacomaPage() {
               without structure, creating friction that silently costs revenue.
             </p>
             <p>
-              Growing service businesses, multi-location operations, and regional franchises face
-              common problems: disconnected tools, manual workflows, and lack of visibility into
-              performance. What starts as manageable inefficiency compounds into lost revenue,
-              slower execution, and customer friction.
-            </p>
-            <p>
-              I help Tacoma-area businesses identify where that friction exists and build systems
-              that actually work. If you are searching for an operations consultant Tacoma owners
-              can talk to directly, or need business systems Tacoma teams can use without more
-              complexity, this is the work.
+              Most friction in a growing business is not mysterious. It is disconnected tools,
+              unclear ownership, and processes that made sense at 5 people but break at 15.
+              That is what I fix.
             </p>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -123,11 +116,11 @@ export default function TacomaPage() {
       <section className="px-4 py-16 sm:px-6 md:py-24">
         <SectionHeader
           eyebrow="Local business friction"
-          title="Workflow optimization in Pierce County starts with how the business really runs."
-          body="The right process improvement Tacoma businesses need is usually practical: fewer workarounds, cleaner handoffs, clearer ownership, and better visibility into the parts of the operation that drive revenue."
+          title="Growth creates drag when the system cannot keep up."
+          body="Most small and mid-size businesses in the area do not have an operations problem. They have a growth problem that looks like an operations problem."
         />
         <div className="mx-auto mt-10 grid max-w-7xl gap-5 lg:grid-cols-3">
-          <LocalSeoCard title="Growing Tacoma Businesses Face System Complexity">
+          <LocalSeoCard title="Growing businesses inherit system complexity">
             <p>
               Regional businesses often inherit disconnected tools and manual processes as they
               scale. A home services company might use one tool for scheduling, another for
@@ -136,9 +129,8 @@ export default function TacomaPage() {
             </p>
             <p>
               This works until it does not. Revenue leaks. Customers drop off. Teams spend time on
-              workarounds instead of high-value work. Manual workflow Tacoma teams tolerate early
-              on can become the exact reason execution slows later. The goal is to make the system
-              visible, simplify what is messy, and give operators a clearer way to run the business.
+              workarounds instead of high-value work. The goal is to make the system visible,
+              simplify what is messy, and give operators a clearer way to run the business.
             </p>
           </LocalSeoCard>
 
@@ -151,10 +143,8 @@ export default function TacomaPage() {
             <p>
               The owner cannot see performance clearly because insights live across platforms. The
               team wastes time pulling reports manually. And every month, the business pays for
-              tools that do not talk to each other. SaaS tool consolidation Tacoma businesses can
-              actually use is not about rejecting software. It is about keeping what works,
-              reducing business software costs where possible, and optimizing business tools around
-              the workflow.
+              tools that do not talk to each other. The point is not to reject software. It is to
+              keep what works, cut what does not, and organize the tools around the workflow.
             </p>
           </LocalSeoCard>
 
@@ -168,9 +158,8 @@ export default function TacomaPage() {
             <p>
               Better systems give owners and teams the visibility they need to move fast. Business
               visibility systems should make the important parts of the operation easier to see,
-              not bury them inside disconnected dashboards. Operational visibility Tacoma leaders
-              can trust often starts with data consolidation Pierce County teams can maintain
-              without constant manual cleanup.
+              not bury them inside disconnected dashboards or reports that require constant manual
+              cleanup.
             </p>
           </LocalSeoCard>
         </div>
@@ -234,15 +223,13 @@ export default function TacomaPage() {
                 Bureau, and Amazon on systems where efficiency directly impacts outcomes.
               </p>
               <p>
+                The same discipline that works inside complex government programs works for a
+                12-person service business trying to stop losing revenue to bad handoffs.
+              </p>
+              <p>
                 That experience informs how I approach regional business problems: practical,
                 execution-focused, and tied to real business impact. For a Tacoma owner, that means
                 translating complex operations into systems people can actually use.
-              </p>
-              <p>
-                If you need an operations consultant with military background, a systems expert
-                Tacoma businesses can work with directly, or business improvement experience that
-                connects strategy to execution, the work starts with understanding the real
-                workflow before recommending a fix.
               </p>
             </div>
           </div>
