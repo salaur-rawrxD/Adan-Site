@@ -33,12 +33,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", sizes: "32x32", type: "image/png" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico?v=20260429" },
+      { url: "/icon.png?v=20260429", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png?v=20260429", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png?v=20260429", sizes: "512x512", type: "image/png" },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: [{ url: "/favicon.ico?v=20260429" }],
+    apple: [{ url: "/apple-icon.png?v=20260429", sizes: "180x180", type: "image/png" }],
   },
 };
 
