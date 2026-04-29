@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CTAButton, Footer, ContactForm, Navbar, SectionHeader } from "@/components/site";
 
 export const metadata: Metadata = {
@@ -34,14 +33,6 @@ export const metadata: Metadata = {
     images: ["https://www.withadan.com/og-image.png"],
   },
 };
-
-const focusAreas = [
-  "Service businesses: home services, HVAC, plumbing, logistics, healthcare support",
-  "Multi-location operations: regional franchises, branch operations",
-  "Operations-heavy SMBs: manufacturing, fulfillment, field services",
-  "Businesses with internal teams: staffing challenges drive efficiency needs",
-  "Growing companies that have outgrown their original systems",
-];
 
 const approach = [
   {
@@ -117,13 +108,13 @@ export default function TacomaPage() {
           </h1>
           <div className="mt-7 grid max-w-4xl gap-5 text-lg leading-8 text-[#E2E8F0] md:text-xl md:leading-9">
             <p>
-              Many Tacoma and Pierce County businesses operate with systems that have grown
-              without structure, creating friction that silently costs revenue.
+              Tacoma&rsquo;s business community is hands-on. Owners who built something real, teams
+              that get work done, operations that grew fast and messy because the demand was there.
             </p>
             <p>
-              Most friction in a growing business is not mysterious. It is disconnected tools,
+              Most friction in a growing business isn&rsquo;t mysterious. It&rsquo;s disconnected tools,
               unclear ownership, and processes that made sense at 5 people but break at 15.
-              That is what I fix.
+              That&rsquo;s what I fix.
             </p>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -142,73 +133,28 @@ export default function TacomaPage() {
       <section className="px-4 py-16 sm:px-6 md:py-24">
         <SectionHeader
           eyebrow="Local business friction"
-          title="Growth creates drag when the system cannot keep up."
-          body="Most small and mid-size businesses in the area do not have an operations problem. They have a growth problem that looks like an operations problem."
+          title="What Growth Friction Actually Looks Like"
+          body="A scheduling tool that does not talk to invoicing. A pricing process that lives in someone&rsquo;s head. New hires who take 3 weeks to become useful because nothing is documented."
         />
-        <div className="mx-auto mt-10 grid max-w-7xl gap-5 lg:grid-cols-3">
-          <LocalSeoCard title="Growing businesses inherit system complexity">
-            <p>
-              Regional businesses often inherit disconnected tools and manual processes as they
-              scale. A home services company might use one tool for scheduling, another for
-              invoicing, a spreadsheet for inventory, and tribal knowledge for pricing. A
-              multi-location operation runs different workflows in different locations.
-            </p>
-            <p>
-              This works until it does not. Revenue leaks. Customers drop off. Teams spend time on
-              workarounds instead of high-value work. The goal is to make the system visible,
-              simplify what is messy, and give operators a clearer way to run the business.
-            </p>
-          </LocalSeoCard>
-
-          <LocalSeoCard title="Too Many Tools, Invisible Costs">
-            <p>
-              Pierce County businesses often operate with eight to fifteen different SaaS
-              platforms. Each is helpful individually. Together, they trap data, duplicate work,
-              and create decision paralysis.
-            </p>
-            <p>
-              The owner cannot see performance clearly because insights live across platforms. The
-              team wastes time pulling reports manually. And every month, the business pays for
-              tools that do not talk to each other. The point is not to reject software. It is to
-              keep what works, cut what does not, and organize the tools around the workflow.
-            </p>
-          </LocalSeoCard>
-
-          <LocalSeoCard title="Lack of Visibility Leads to Slow Decisions">
-            <p>
-              When performance data is fragmented, decisions slow down. A logistics business cannot
-              see which routes are most profitable. A service business cannot see where customers
-              drop off in the intake process. A retail operation cannot quickly spot inventory or
-              cash flow problems.
-            </p>
-            <p>
-              Better systems give owners and teams the visibility they need to move fast. Business
-              visibility systems should make the important parts of the operation easier to see,
-              not bury them inside disconnected dashboards or reports that require constant manual
-              cleanup.
-            </p>
-          </LocalSeoCard>
+        <div className="mx-auto mt-10 max-w-4xl rounded-xl border border-[#E2E8F0] bg-white p-6 shadow-[0_24px_80px_rgba(15,23,42,0.06)] md:p-8">
+          <p className="text-lg leading-8 text-[#475569]">
+            These aren&rsquo;t technology problems. They&rsquo;re system problems, and they compound quietly
+            until revenue starts showing it.
+          </p>
         </div>
       </section>
 
       <section className="bg-[#EEF2F7] px-4 py-16 sm:px-6 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div className="mx-auto max-w-7xl">
           <SectionHeader
-            eyebrow="Who this helps"
-            title="This work focuses on operations-heavy businesses."
-            body="The strongest fit is a business where customer experience, internal process, and business systems all touch revenue."
+            eyebrow="Who I work with"
+            title="Built for operators who have outgrown the old way."
+            body="Mostly owner-operated businesses between 5 and 50 people: service companies, contractors, multi-location operations, and regional firms that have outgrown the systems they started with."
           />
-          <div className="grid gap-3">
-            {focusAreas.map((item) => (
-              <div
-                key={item}
-                className="flex items-start gap-3 rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-[0_18px_60px_rgba(15,23,42,0.05)]"
-              >
-                <CheckCircle2 className="mt-0.5 shrink-0 text-[#D6A84F]" size={18} />
-                <p className="font-semibold leading-6 text-[#0A0D14]">{item}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mx-auto mt-8 max-w-3xl text-center text-lg leading-8 text-[#475569]">
+            If you&rsquo;re running Pierce County operations and the business works but feels harder
+            than it should, that&rsquo;s usually a solvable problem.
+          </p>
         </div>
       </section>
 
@@ -253,13 +199,24 @@ export default function TacomaPage() {
                 12-person service business trying to stop losing revenue to bad handoffs.
               </p>
               <p>
+                The same discipline that clears bottlenecks inside a federal program works for a
+                12-person Tacoma contractor losing 8 hours a week to manual workarounds.
+              </p>
+              <p>
                 That experience informs how I approach regional business problems: practical,
-                execution-focused, and tied to real business impact. For a Tacoma owner, that means
-                translating complex operations into systems people can actually use.
+                execution-focused, and tied to real business impact.
               </p>
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="bg-[#EEF2F7] px-4 py-16 sm:px-6 md:py-24">
+        <SectionHeader
+          eyebrow="Local signal"
+          title="Based in Tacoma. Working Across Pierce County."
+          body="I work with businesses across Tacoma, Puyallup, Lakewood, Gig Harbor, and the surrounding areas. Most engagements start with a short conversation: not a proposal, not a sales process. Just an honest look at what&rsquo;s slowing things down."
+        />
       </section>
 
       <section id="tacoma-contact" className="px-4 pb-16 sm:px-6 md:pb-24">
@@ -268,7 +225,7 @@ export default function TacomaPage() {
           <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#D6A84F]">
-                Tacoma &amp; Pierce County
+                Start here
               </p>
               <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
                 See Where Your Business May Be Losing Efficiency
@@ -309,15 +266,6 @@ export default function TacomaPage() {
 
       <Footer />
     </main>
-  );
-}
-
-function LocalSeoCard({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <article className="rounded-xl border border-[#E2E8F0] bg-white p-5 shadow-[0_24px_80px_rgba(15,23,42,0.06)] md:p-6">
-      <h2 className="text-2xl font-semibold leading-tight tracking-tight text-[#0A0D14]">{title}</h2>
-      <div className="mt-5 grid gap-4 text-base leading-7 text-[#475569]">{children}</div>
-    </article>
   );
 }
 
